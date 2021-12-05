@@ -1,0 +1,28 @@
+.active {
+  @apply
+    font-semibold
+    bg-purple-800
+    text-white
+  ;
+}
+
+.kitchen-content {
+  @apply
+    col-span-9
+  ;
+}
+
+.kitchen-menu {
+  @apply
+    col-span-3
+  ;
+}
+
+.kitchen-menu-item {
+  @apply
+    block
+    rounded-md
+    p-3
+  ;
+}
+

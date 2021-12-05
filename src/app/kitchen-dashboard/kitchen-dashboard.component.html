@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Kitchen</h1>
+  <div class="grid grid-cols-12 gap-4 ">
+    <aside class="kitchen-menu">
+      <ul>
+        <li><a class="kitchen-menu-item" routerLink="recipes" routerLinkActive="active">Recipes</a></li>
+        <li><a class="kitchen-menu-item" routerLink="shopping-cart" routerLinkActive="active">Shopping Cart</a></li>
+        <li><a class="kitchen-menu-item" routerLink="weekly-menu" routerLinkActive="active">Weekly Menu</a></li>
+      </ul>
+    </aside>
+
+    <main class="kitchen-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+

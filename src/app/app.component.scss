@@ -1,0 +1,19 @@
+.active {
+  @apply
+    font-semibold
+  ;
+}
+
+.logo-name {
+  @apply
+    text-xl
+    font-semibold  
+  ;
+}
+
+.logo-image {
+  @apply
+    w-9
+    mr-3
+  ;
+}
