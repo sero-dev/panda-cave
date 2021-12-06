@@ -13,9 +13,13 @@
       placeholder="Search for a recipe...">
   </div>
 
-  <button class="btn btn-secondary">Add</button>
+  <button class="btn btn-secondary" (click)="onAddButtonClick()">Add</button>
 </div>
 
 <ul class="recipe-list">
   <li *ngFor="let recipe of recipes" class="recipe-item">{{ recipe.name }}</li>
 </ul>
+
+<div [hidden]="!showAddRecipeModal">
+  <app-add-recipe-modal (onRecipeAdded)="addRecipe($event)" (onCancelled)="closeModal()"></app-add-recipe-modal>
+</div>

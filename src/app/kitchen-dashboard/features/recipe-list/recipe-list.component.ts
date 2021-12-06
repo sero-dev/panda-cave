@@ -10,7 +10,8 @@ import { RecipeService } from '../../services/recipe.service';
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[] = [];
-  searchText: string = "";
+  showAddRecipeModal: boolean = true;
+  searchText: string = '';
 
   constructor(private recipeService: RecipeService) { }
 
@@ -23,11 +24,24 @@ export class RecipeListComponent implements OnInit {
       .subscribe(recipes => this.recipes = recipes);
   }
 
+  addRecipe(recipeName: string): void {
+    console.log(recipeName);
+    this.closeModal();
+  }
+
+  closeModal(): void {
+    this.showAddRecipeModal = false;
+  }
+
   onSearchTextChange(searchText: string) {
     if (searchText === '') this.getRecipes();
     else {
       this.recipeService.searchRecipes(searchText)
         .subscribe(recipes => this.recipes = recipes);
     }
+  }
+
+  onAddButtonClick() {
+    this.showAddRecipeModal = true;
   }
 }
