@@ -23,6 +23,14 @@
     block
     rounded-md
     p-3
+    transition
   ;
+
+  &:not(.active):hover {
+    @apply
+      bg-gray-700
+      bg-opacity-40
+      ease-in
+  }
 }
 

@@ -4,15 +4,19 @@ import { KitchenDashboardComponent } from './kitchen-dashboard.component';
 import { KitchenDashboardRoutingModule } from './kitchen-dashboard-routing.module';
 import { ShoppingCartComponent } from './features/shopping-cart/shopping-cart.component';
 import { WeeklyMenuComponent } from './features/weekly-menu/weekly-menu.component';
+import { RecipeListComponent } from './features/recipe-list/recipe-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     KitchenDashboardComponent,
+    RecipeListComponent,
     ShoppingCartComponent,
     WeeklyMenuComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     KitchenDashboardRoutingModule
   ]
 })

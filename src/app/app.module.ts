@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { KitchenDashboardModule } from './kitchen-dashboard/kitchen-dashboard.mo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     KitchenDashboardModule
   ],
