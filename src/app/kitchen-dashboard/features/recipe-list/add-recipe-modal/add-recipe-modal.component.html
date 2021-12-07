@@ -28,8 +28,8 @@
     <div class="dialog">
       <div class="dialog-bg">
         <div class="dialog-layout">
-          <div class="icon-container">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="dialog-icon-container dialog-icon-green">
+            <svg xmlns="http://www.w3.org/2000/svg" class="dialog-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
@@ -39,7 +39,6 @@
               class="dialog-input" 
               (keydown.enter)="onAddButtonClick()" 
               [(ngModel)]="recipeName" 
-              autofocus
               name="recipeName" 
               type="text" 
               placeholder="Type in the new recipe name">
@@ -47,8 +46,8 @@
         </div>
       </div>
       <div class="dialog-footer">
-        <button [disabled]="recipeName === ''" (click)="onAddButtonClick()" type="button" class="dialog-primary-btn">Add</button>
-        <button (click)="onCancelButtonClick()" type="button" class="dialog-secondary-btn">Cancel</button>
+        <button [disabled]="recipeName === ''" (click)="onAddButtonClick()" type="button" class="dialog-green-btn">Add</button>
+        <button (click)="onCancelButtonClick()" type="button" class="dialog-cancel-btn">Cancel</button>
       </div>
     </div>
   </div>

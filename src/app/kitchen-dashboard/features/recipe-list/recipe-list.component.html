@@ -13,13 +13,25 @@
       placeholder="Search for a recipe...">
   </div>
 
-  <button class="btn btn-secondary" (click)="onAddButtonClick()">Add</button>
+  <button class="btn btn-secondary" (click)="openAddRecipeModal()">Add</button>
 </div>
 
 <ul class="recipe-list">
-  <li *ngFor="let recipe of recipes" class="recipe-item">{{ recipe.name }}</li>
+  <li (click)="openEditRecipeModal(recipe)" *ngFor="let recipe of recipes" class="recipe-item">{{ recipe.name }}</li>
 </ul>
 
-<div [hidden]="!showAddRecipeModal">
-  <app-add-recipe-modal (onRecipeAdded)="addRecipe()" (onCancelled)="closeModal()"></app-add-recipe-modal>
+<div *ngIf="showAddRecipeModal">
+  <app-add-recipe-modal 
+    (onRecipeAdded)="refreshList()" 
+    (onCancelled)="closeAddRecipeModal()">
+  </app-add-recipe-modal>
+</div>
+
+<div *ngIf="showEditRecipeModal">
+  <app-edit-recipe-modal
+    [recipe]="selectedRecipe"
+    (onRecipeUpdated)="refreshList()"
+    (onRecipeDeleted)="refreshList()"
+    (onCancelled)="closeEditRecipeModal()">
+  </app-edit-recipe-modal>
 </div>

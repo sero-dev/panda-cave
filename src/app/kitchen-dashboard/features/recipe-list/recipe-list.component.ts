@@ -11,7 +11,9 @@ export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[] = [];
   showAddRecipeModal: boolean = false;
-  searchText: string = '';
+  showEditRecipeModal: boolean = false;
+  selectedRecipe: Recipe;
+  searchText: string;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -24,14 +26,28 @@ export class RecipeListComponent implements OnInit {
       .subscribe(recipes => this.recipes = recipes);
   }
 
-  addRecipe(): void {
+  refreshList(): void {
     this.searchText = '';
     this.getRecipes();
-    this.closeModal();
+    this.closeAddRecipeModal();
+    this.closeEditRecipeModal();
   }
 
-  closeModal(): void {
+  openAddRecipeModal() {
+    this.showAddRecipeModal = true;
+  }
+
+  openEditRecipeModal(recipe: Recipe) {
+    this.selectedRecipe = recipe;
+    this.showEditRecipeModal = true;
+  }
+
+  closeAddRecipeModal(): void {
     this.showAddRecipeModal = false;
+  }
+
+  closeEditRecipeModal(): void {
+    this.showEditRecipeModal = false;
   }
 
   onSearchTextChange(searchText: string) {
@@ -42,7 +58,5 @@ export class RecipeListComponent implements OnInit {
     }
   }
 
-  onAddButtonClick() {
-    this.showAddRecipeModal = true;
-  }
+  
 }

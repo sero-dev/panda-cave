@@ -24,4 +24,11 @@ export class RecipeService {
     return this.http.get<Recipe[]>(`${this.recipesUrl}/search?name=${searchText}`);
   }
 
+  deleteRecipe(recipeId: number): Observable<void> {
+    return this.http.delete<void>(`${this.recipesUrl}/${recipeId}`)
+  }
+
+  updateRecipe(recipe: Recipe): Observable<void> {
+    return this.http.put<void>(`${this.recipesUrl}/${recipe.id}`, recipe)
+  }
 }

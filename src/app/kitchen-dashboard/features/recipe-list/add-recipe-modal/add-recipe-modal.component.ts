@@ -18,18 +18,22 @@ export class AddRecipeModalComponent implements OnInit {
   ngOnInit(): void { }
 
   onAddButtonClick() {
-    if (this.recipeName != '') {
+    if (this.recipeName !== '') {
       this.recipeService.addRecipe(this.recipeName).subscribe(
         () => {
           this.onRecipeAdded.emit();
-          this.recipeName = '';
+          this.clearRecipeName()
         }
       )
     }
   }
 
   onCancelButtonClick() {
-    this.recipeName = '';
+    this.clearRecipeName();
     this.onCancelled.emit();
+  }
+
+  clearRecipeName() {
+    this.recipeName = '';
   }
 }
