@@ -16,6 +16,10 @@ export class RecipeService {
     return this.http.get<Recipe[]>(this.recipesUrl);
   }
 
+  addRecipe(recipeName: string): Observable<void> {
+    return this.http.post<void>(this.recipesUrl, { name: recipeName });
+  }
+
   searchRecipes(searchText: string): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.recipesUrl}/search?name=${searchText}`);
   }

@@ -34,15 +34,20 @@
             </svg>
           </div>
           <div class="dialog-content">
-            <div>
-              <label class="dialog-label" for="recipeName">Recipe Name</label>
-              <input class="dialog-input" name="recipeName" type="text" placeholder="Type in the new recipe name">
-            </div>
+            <label class="dialog-label" for="recipeName">Recipe Name</label>
+            <input 
+              class="dialog-input" 
+              (keydown.enter)="onAddButtonClick()" 
+              [(ngModel)]="recipeName" 
+              autofocus
+              name="recipeName" 
+              type="text" 
+              placeholder="Type in the new recipe name">
           </div>
         </div>
       </div>
       <div class="dialog-footer">
-        <button (click)="onAddButtonClick()" type="button" class="dialog-primary-btn">Add</button>
+        <button [disabled]="recipeName === ''" (click)="onAddButtonClick()" type="button" class="dialog-primary-btn">Add</button>
         <button (click)="onCancelButtonClick()" type="button" class="dialog-secondary-btn">Cancel</button>
       </div>
     </div>

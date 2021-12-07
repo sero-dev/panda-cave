@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service';
 
 @Component({
   selector: 'app-add-recipe-modal',
@@ -7,20 +8,28 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AddRecipeModalComponent implements OnInit {
 
-  @Output() onRecipeAdded: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onRecipeAdded: EventEmitter<void> = new EventEmitter<void>();
   @Output() onCancelled: EventEmitter<void> = new EventEmitter<void>();
 
-  recipeName: string = 'Helo'
+  recipeName: string = ''
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void { }
 
   onAddButtonClick() {
-    this.onRecipeAdded.emit(this.recipeName);
+    if (this.recipeName != '') {
+      this.recipeService.addRecipe(this.recipeName).subscribe(
+        () => {
+          this.onRecipeAdded.emit();
+          this.recipeName = '';
+        }
+      )
+    }
   }
 
   onCancelButtonClick() {
+    this.recipeName = '';
     this.onCancelled.emit();
   }
 }

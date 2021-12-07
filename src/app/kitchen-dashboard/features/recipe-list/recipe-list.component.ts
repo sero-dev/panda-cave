@@ -10,7 +10,7 @@ import { RecipeService } from '../../services/recipe.service';
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[] = [];
-  showAddRecipeModal: boolean = true;
+  showAddRecipeModal: boolean = false;
   searchText: string = '';
 
   constructor(private recipeService: RecipeService) { }
@@ -24,8 +24,9 @@ export class RecipeListComponent implements OnInit {
       .subscribe(recipes => this.recipes = recipes);
   }
 
-  addRecipe(recipeName: string): void {
-    console.log(recipeName);
+  addRecipe(): void {
+    this.searchText = '';
+    this.getRecipes();
     this.closeModal();
   }
 
