@@ -6,16 +6,38 @@
   ;
 }
 
+.container {
+  @apply 
+    max-w-5xl 
+    mx-auto
+  ;
+}
+
 .kitchen-content {
   @apply
-    col-span-9
+    col-span-12
+    md:col-span-9
   ;
 }
 
 .kitchen-menu {
   @apply
-    col-span-3
+    md:col-span-3
+    col-span-12
   ;
+  
+  ul {
+    @apply
+      flex
+      justify-around
+      md:flex-col
+    ;
+
+    li {
+      @apply flex-grow;
+    }
+  }
+  
 }
 
 .kitchen-menu-item {
@@ -24,6 +46,10 @@
     rounded-md
     p-3
     transition
+    flex-grow
+    md:text-left
+    text-center
+    mx-1
   ;
 
   &:not(.active):hover {
