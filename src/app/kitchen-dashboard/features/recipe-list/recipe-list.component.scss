@@ -10,12 +10,11 @@
     p-4
     bg-gray-700
     hover:bg-gray-500
+    active:bg-gray-400
     rounded-md
     transition-all
     hover:ease-in
     hover:cursor-pointer
-    active:relative
-    active:top-1
     select-none
   ;
 }
