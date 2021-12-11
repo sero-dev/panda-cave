@@ -31,6 +31,13 @@ h1 {
   ;
 }
 
+.btn-container {
+  @apply
+    flex
+    justify-between
+  ;
+}
+
 .modal-container {
   @apply
     fixed 
@@ -186,7 +193,7 @@ h1 {
   @apply
     text-black
     block
-    w-full
+    w-80
     rounded-md
     mt-2
   ;

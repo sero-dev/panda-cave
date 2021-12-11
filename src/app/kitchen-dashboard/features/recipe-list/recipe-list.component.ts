@@ -38,7 +38,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   openEditRecipeModal(recipe: Recipe) {
-    this.selectedRecipe = recipe;
+    this.selectedRecipe = JSON.parse(JSON.stringify(recipe));;
     this.showEditRecipeModal = true;
   }
 
@@ -51,7 +51,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   onSearchTextChange(searchText: string) {
-    if (searchText === '') this.getRecipes();
+    if (searchText.trim() === '') this.getRecipes();
     else {
       this.recipeService.searchRecipes(searchText)
         .subscribe(recipes => this.recipes = recipes);

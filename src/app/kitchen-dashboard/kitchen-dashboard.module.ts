@@ -8,6 +8,7 @@ import { WeeklyMenuComponent } from './features/weekly-menu/weekly-menu.componen
 import { RecipeListComponent } from './features/recipe-list/recipe-list.component';
 import { AddRecipeModalComponent } from './features/recipe-list/add-recipe-modal/add-recipe-modal.component';
 import { EditRecipeModalComponent } from './features/recipe-list/edit-recipe-modal/edit-recipe-modal.component';
+import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EditRecipeModalComponent } from './features/recipe-list/edit-recipe-mod
     ShoppingCartComponent,
     WeeklyMenuComponent,
     AddRecipeModalComponent,
-    EditRecipeModalComponent
+    EditRecipeModalComponent,
+    DailyMenuComponent
   ],
   imports: [
     CommonModule,

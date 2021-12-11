@@ -1,5 +1,14 @@
-<div class="text-center">
-  <h1 class="mb-2">Undergo Construction</h1>
-  <p>Check back later to see content!</p>
+<div class="btn-container mb-4">
+  <span></span>
+  <button class="btn btn-secondary">Print</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <app-daily-menu [weekday]="'Monday'"></app-daily-menu>
+  <app-daily-menu [weekday]="'Tuesday'"></app-daily-menu>
+  <app-daily-menu [weekday]="'Wednesday'"></app-daily-menu>
+  <app-daily-menu [weekday]="'Thursday'"></app-daily-menu>
+  <app-daily-menu [weekday]="'Friday'"></app-daily-menu>
+  <app-daily-menu [weekday]="'Saturday'"></app-daily-menu>
+  <app-daily-menu [weekday]="'Sunday'"></app-daily-menu>
 </div>
 

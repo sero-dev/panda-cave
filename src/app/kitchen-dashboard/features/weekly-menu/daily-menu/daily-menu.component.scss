@@ -1,0 +1,60 @@
+.daily-menu {
+  @apply
+    bg-gray-700 
+    rounded-md 
+    p-6
+  ;
+}
+
+.daily-menu-title {
+  @apply
+    text-lg 
+    font-semibold 
+    mb-5 
+    text-center
+  ;
+}
+
+.daily-container {
+  @apply
+    flex 
+    flex-col
+  ;
+}
+
+.daily-item {
+  @apply
+    flex 
+    flex-col
+  ;
+}
+
+.daily-meal {
+  @apply
+    flex 
+    items-center 
+    flex-grow
+  ;
+}
+
+.daily-meal-label {
+  @apply
+    flex 
+    w-10 
+    h-10 
+    justify-center 
+    items-center 
+    bg-green-600 
+    rounded-l
+  ;
+}
+
+.daily-meal-input {
+  @apply
+    border-0 
+    rounded-r 
+    flex-grow 
+    hover:cursor-pointer 
+    active:bg-gray-200
+  ;
+}
