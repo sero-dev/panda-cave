@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-daily-menu',
@@ -8,6 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DailyMenuComponent implements OnInit {
 
   @Input() weekday: string
+  @Input() lunch: string | undefined
+  @Input() dinner: string | undefined
+  @Output('lunchClick') onLunchClicked = new EventEmitter<void>()
+  @Output('dinnerClick') onDinnerClicked = new EventEmitter<void>()
 
   constructor() { }
 

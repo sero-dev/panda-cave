@@ -38,7 +38,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   openEditRecipeModal(recipe: Recipe) {
-    this.selectedRecipe = JSON.parse(JSON.stringify(recipe));;
+    this.selectedRecipe = JSON.parse(JSON.stringify(recipe));
     this.showEditRecipeModal = true;
   }
 

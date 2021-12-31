@@ -3,12 +3,20 @@
   <button class="btn btn-secondary">Print</button>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-  <app-daily-menu [weekday]="'Monday'"></app-daily-menu>
-  <app-daily-menu [weekday]="'Tuesday'"></app-daily-menu>
-  <app-daily-menu [weekday]="'Wednesday'"></app-daily-menu>
-  <app-daily-menu [weekday]="'Thursday'"></app-daily-menu>
-  <app-daily-menu [weekday]="'Friday'"></app-daily-menu>
-  <app-daily-menu [weekday]="'Saturday'"></app-daily-menu>
-  <app-daily-menu [weekday]="'Sunday'"></app-daily-menu>
+  <app-daily-menu
+    *ngFor="let item of weeklyMenu"
+    [weekday]="item.day"
+    [lunch]="item.lunch?.name"
+    [dinner]="item.lunch?.name"
+    (lunchClick)="onLunchClicked(item)" 
+    (dinnerClick)="onDinnerClicked(item)">
+  </app-daily-menu>
+</div>
+<div *ngIf="showSelectRecipeModal">
+  <app-select-recipe-modal
+    (selected)="onSelectRecipeModalSelected($event)"
+    (cancel)="onSelectRecipeModalCancel()"
+    (clear)="onSelectRecipeModalClear()"
+  ></app-select-recipe-modal>
 </div>
 

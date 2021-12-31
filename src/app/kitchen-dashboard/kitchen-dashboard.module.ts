@@ -9,6 +9,7 @@ import { RecipeListComponent } from './features/recipe-list/recipe-list.componen
 import { AddRecipeModalComponent } from './features/recipe-list/add-recipe-modal/add-recipe-modal.component';
 import { EditRecipeModalComponent } from './features/recipe-list/edit-recipe-modal/edit-recipe-modal.component';
 import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu.component';
+import { SelectRecipeModalComponent } from './features/weekly-menu/select-recipe-modal/select-recipe-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu
     WeeklyMenuComponent,
     AddRecipeModalComponent,
     EditRecipeModalComponent,
-    DailyMenuComponent
+    DailyMenuComponent,
+    SelectRecipeModalComponent
   ],
   imports: [
     CommonModule,
