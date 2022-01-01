@@ -21,16 +21,13 @@
                 name="recipeName" 
                 type="text" 
                 placeholder="Type in the recipe name">
-
-              <div class="suggestion-box">
-                <ul class="suggestion-list">
-                  <li 
-                    class="suggestion-item" 
-                    *ngFor="let suggestion of suggestions">
-                    (click)="onSuggestionClick(suggestion)"
-                  {{suggestion.name}}</li>
-                </ul>
-              </div>
+              <ul>
+                <li 
+                  class="suggestion-item" 
+                  *ngFor="let suggestion of suggestions"
+                  (click)="onSuggestionClicked(suggestion)"
+                >{{suggestion.name}}</li>
+              </ul>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@
     *ngFor="let item of weeklyMenu"
     [weekday]="item.day"
     [lunch]="item.lunch?.name"
-    [dinner]="item.lunch?.name"
+    [dinner]="item.dinner?.name"
     (lunchClick)="onLunchClicked(item)" 
     (dinnerClick)="onDinnerClicked(item)">
   </app-daily-menu>

@@ -1,0 +1,13 @@
+.suggestion-item {
+  @apply
+    text-black
+    mt-2
+    bg-purple-100
+    p-5
+    cursor-pointer
+    rounded-md
+    transition-all
+    ease-in-out
+    hover:bg-purple-200
+  ;
+}

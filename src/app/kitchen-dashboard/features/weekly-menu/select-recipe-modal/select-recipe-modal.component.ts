@@ -30,7 +30,7 @@ export class SelectRecipeModalComponent implements OnInit {
     if (searchText.trim() == '') return;
 
     this.recipeService.searchRecipes(searchText)
-      .subscribe(recipes => this.suggestions = JSON.parse(JSON.stringify(recipes)))
+      .subscribe(recipes => this.suggestions = recipes.slice(0, 3))
   }
 
   onCancelClicked() {
@@ -44,6 +44,7 @@ export class SelectRecipeModalComponent implements OnInit {
   }
 
   onSuggestionClicked(recipe: Recipe) {
+    this.searchText = '';
     this.onSelected.emit(recipe);
   }
 }

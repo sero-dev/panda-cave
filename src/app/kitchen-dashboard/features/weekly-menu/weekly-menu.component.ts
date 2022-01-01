@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../models/recipe.model';
 import { MealType, WeeklyMenuItem } from '../../models/weekly-menu.model';
+import { WeeklyMenuService } from '../../services/weekly-menu.service';
 
 @Component({
   selector: 'app-weekly-menu',
@@ -9,27 +10,22 @@ import { MealType, WeeklyMenuItem } from '../../models/weekly-menu.model';
 })
 export class WeeklyMenuComponent implements OnInit {
 
-  weeklyMenu: WeeklyMenuItem[] = [
-    { order: 1, day: 'Monday', lunch: null, dinner: null },
-    { order: 2, day: 'Tuesday', lunch: null, dinner: null },
-    { order: 3, day: 'Wednesday', lunch: null, dinner: null },
-    { order: 4, day: 'Thursday', lunch: null, dinner: null },
-    { order: 5, day: 'Friday', lunch: null, dinner: null },
-    { order: 6, day: 'Saturday', lunch: null, dinner: null },
-    { order: 7, day: 'Sunday', lunch: null, dinner: null },
-  ];
-
+  weeklyMenu: WeeklyMenuItem[];
   selectedWeekday: WeeklyMenuItem;
   selectedMeal: MealType;
 
   showSelectRecipeModal = false;
 
-  constructor() { }
+  constructor(private weeklyMenuSerice: WeeklyMenuService) { }
 
   ngOnInit(): void {
+    this.weeklyMenuSerice.getWeeklyMenu().subscribe(
+      response => this.weeklyMenu = response
+    )
   }
 
   onSelectRecipeModalSelected(recipe: Recipe) {
+    this.showSelectRecipeModal = false;
     switch (this.selectedMeal) {
       case MealType.Lunch:
         this.selectedWeekday.lunch = recipe;
@@ -40,6 +36,10 @@ export class WeeklyMenuComponent implements OnInit {
       default:
         console.error('Meal Type was not selected');
     }
+
+    this.weeklyMenuSerice.updateWeeklyMenu(this.weeklyMenu).subscribe(
+      response => console.log(response)
+    );
   }
 
   onSelectRecipeModalCancel() {
@@ -57,9 +57,8 @@ export class WeeklyMenuComponent implements OnInit {
   }
 
   onDinnerClicked(menuItem: WeeklyMenuItem) {
-    this.selectedMeal = MealType.Lunch;
+    this.selectedMeal = MealType.Dinner;
     this.selectedWeekday = menuItem;
     this.showSelectRecipeModal = true;
   }
-
 }
