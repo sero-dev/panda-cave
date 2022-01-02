@@ -10,6 +10,7 @@ import { AddRecipeModalComponent } from './features/recipe-list/add-recipe-modal
 import { EditRecipeModalComponent } from './features/recipe-list/edit-recipe-modal/edit-recipe-modal.component';
 import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu.component';
 import { SelectRecipeModalComponent } from './features/weekly-menu/select-recipe-modal/select-recipe-modal.component';
+import { RecipeContextMenuComponent } from './features/recipe-list/recipe-context-menu/recipe-context-menu.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SelectRecipeModalComponent } from './features/weekly-menu/select-recipe
     AddRecipeModalComponent,
     EditRecipeModalComponent,
     DailyMenuComponent,
-    SelectRecipeModalComponent
+    SelectRecipeModalComponent,
+    RecipeContextMenuComponent
   ],
   imports: [
     CommonModule,

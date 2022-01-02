@@ -16,10 +16,10 @@ export class WeeklyMenuComponent implements OnInit {
 
   showSelectRecipeModal = false;
 
-  constructor(private weeklyMenuSerice: WeeklyMenuService) { }
+  constructor(private weeklyMenuService: WeeklyMenuService) { }
 
   ngOnInit(): void {
-    this.weeklyMenuSerice.getWeeklyMenu().subscribe(
+    this.weeklyMenuService.getWeeklyMenu().subscribe(
       response => this.weeklyMenu = response
     )
   }
@@ -37,7 +37,7 @@ export class WeeklyMenuComponent implements OnInit {
         console.error('Meal Type was not selected');
     }
 
-    this.weeklyMenuSerice.updateWeeklyMenu(this.weeklyMenu).subscribe(
+    this.weeklyMenuService.updateWeeklyMenu(this.weeklyMenu).subscribe(
       response => console.log(response)
     );
   }
@@ -48,6 +48,20 @@ export class WeeklyMenuComponent implements OnInit {
 
   onSelectRecipeModalClear() {
     this.showSelectRecipeModal = false;
+    switch (this.selectedMeal) {
+      case MealType.Lunch:
+        this.selectedWeekday.lunch = null;
+        break;
+      case MealType.Dinner:
+        this.selectedWeekday.dinner = null;
+        break;
+      default:
+        console.error('Meal Type was not selected');
+    }
+
+    this.weeklyMenuService.updateWeeklyMenu(this.weeklyMenu).subscribe(
+      response => console.log(response)
+    );
   }
 
   onLunchClicked(menuItem: WeeklyMenuItem) {

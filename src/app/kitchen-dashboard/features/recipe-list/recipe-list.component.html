@@ -17,8 +17,23 @@
 </div>
 
 <ul class="recipe-list">
-  <li (click)="openEditRecipeModal(recipe)" *ngFor="let recipe of recipes" class="recipe-item">{{ recipe.name }}</li>
+  <li 
+    (click)="openEditRecipeModal(recipe)"
+    (contextmenu)="openItemContextMenu($event, recipe); false"
+    *ngFor="let recipe of recipes" 
+    class="recipe-item">
+    {{ recipe.name }}
+  </li>
 </ul>
+
+<div *ngIf="showRecipeContextMenu">
+  <app-recipe-context-menu
+    [positionX]="contextMenuPositionX"
+    [positionY]="contextMenuPositionY"
+    [recipe]="selectedRecipe"
+  >
+  </app-recipe-context-menu>
+</div>
 
 <div *ngIf="showAddRecipeModal">
   <app-add-recipe-modal 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeService } from '../../services/recipe.service';
 
@@ -12,6 +12,9 @@ export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
   showAddRecipeModal: boolean = false;
   showEditRecipeModal: boolean = false;
+  showRecipeContextMenu: boolean = false;
+  contextMenuPositionX: number;
+  contextMenuPositionY: number;
   selectedRecipe: Recipe;
   searchText: string;
 
@@ -42,6 +45,13 @@ export class RecipeListComponent implements OnInit {
     this.showEditRecipeModal = true;
   }
 
+  openItemContextMenu(event: MouseEvent, recipe: Recipe) {
+    this.showRecipeContextMenu = true;
+    this.contextMenuPositionX = event.clientX;
+    this.contextMenuPositionY = event.clientY;
+    this.selectedRecipe = recipe;
+  }
+
   closeAddRecipeModal(): void {
     this.showAddRecipeModal = false;
   }
@@ -58,5 +68,8 @@ export class RecipeListComponent implements OnInit {
     }
   }
 
-  
+  @HostListener('document:click')
+  documentClick(): void {
+    this.showRecipeContextMenu = false;
+  }
 }

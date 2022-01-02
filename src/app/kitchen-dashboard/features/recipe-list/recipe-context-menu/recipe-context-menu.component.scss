@@ -1,0 +1,43 @@
+.context-menu {
+  @apply
+    w-56
+    bg-gray-600
+    p-3
+    rounded-md
+    shadow-lg
+  ;
+}
+
+.menu-title {
+  @apply
+    font-semibold
+    mb-2
+  ;
+}
+
+.menu-item {
+  @apply
+    p-2
+    rounded-md
+    transition-all
+    ease-in-out
+    hover:bg-gray-700
+    flex
+    justify-between
+  ;
+}
+
+.menu-btn {
+  @apply
+    hover:text-green-400
+  ;
+}
+
+.menu-btn-icon {
+  @apply
+    ml-4
+    h-5
+    w-5
+  ;
+}
+
