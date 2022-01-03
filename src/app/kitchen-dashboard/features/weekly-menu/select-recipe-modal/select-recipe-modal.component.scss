@@ -11,3 +11,13 @@
     hover:bg-purple-200
   ;
 }
+
+.selected-recipe-text {
+  @apply
+    self-center
+    flex-grow
+    text-gray-700
+    font-medium
+    text-sm
+  ;
+}

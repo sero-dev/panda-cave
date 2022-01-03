@@ -9,6 +9,9 @@ import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service
 })
 export class SelectRecipeModalComponent implements OnInit {
 
+  @Input()
+  recipeName: string | undefined;
+
   @Output('selected')
   onSelected = new EventEmitter<Recipe>();
 
