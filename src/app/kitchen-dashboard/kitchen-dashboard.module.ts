@@ -11,6 +11,9 @@ import { EditRecipeModalComponent } from './features/recipe-list/edit-recipe-mod
 import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu.component';
 import { SelectRecipeModalComponent } from './features/weekly-menu/select-recipe-modal/select-recipe-modal.component';
 import { RecipeContextMenuComponent } from './features/recipe-list/recipe-context-menu/recipe-context-menu.component';
+import { IngredientsComponent } from './features/ingredients/ingredients.component';
+import { AddIngredientModalComponent } from './features/ingredients/add-ingredient-modal/add-ingredient-modal.component';
+import { EditIngredientModalComponent } from './features/ingredients/edit-ingredient-modal/edit-ingredient-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { RecipeContextMenuComponent } from './features/recipe-list/recipe-contex
     EditRecipeModalComponent,
     DailyMenuComponent,
     SelectRecipeModalComponent,
-    RecipeContextMenuComponent
+    RecipeContextMenuComponent,
+    IngredientsComponent,
+    AddIngredientModalComponent,
+    EditIngredientModalComponent
   ],
   imports: [
     CommonModule,

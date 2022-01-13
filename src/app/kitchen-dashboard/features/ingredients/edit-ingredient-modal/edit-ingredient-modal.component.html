@@ -13,28 +13,20 @@
               </svg>
             </div>
             <div class="dialog-content">
-              <label class="dialog-label" for="recipeName">Search by Recipe</label>
-              <input
-                [(ngModel)]="searchText"
-                (ngModelChange)="onSearchTextChange($event)"
+              <label class="dialog-label" for="ingredientName">Ingredient Name</label>
+              <input 
                 class="dialog-input" 
-                name="recipeName" 
+                [(ngModel)]="ingredient.name" 
+                name="ingredientName" 
                 type="text" 
-                placeholder="Type in the recipe name">
-              <ul>
-                <li 
-                  class="suggestion-item" 
-                  *ngFor="let suggestion of suggestions"
-                  (click)="onSuggestionClicked(suggestion)"
-                >{{suggestion.name}}</li>
-              </ul>
+                placeholder="Type in the new ingredient name">
             </div>
           </div>
         </div>
         <div class="dialog-footer">
-          <button (click)="onClearClicked()" type="button" class="dialog-red-btn md:mt-0 mt-3">Clear</button>
-          <button (click)="onCancelClicked()" type="button" class="dialog-cancel-btn">Cancel</button>
-          <p class="selected-recipe-text">{{recipeName ? "Selected: " + recipeName : "No Recipe Selected"}}</p>
+          <button [disabled]="ingredient.name === ''" (click)="onUpdateButtonClick()" type="button" class="dialog-purple-btn">Update</button>
+          <button (click)="onDeleteButtonClick()" type="button" class="dialog-red-btn md:mt-0 mt-3">Delete</button>
+          <button (click)="onCancelButtonClick()" type="button" class="dialog-cancel-btn">Cancel</button>
         </div>
       </div>
     </div>
