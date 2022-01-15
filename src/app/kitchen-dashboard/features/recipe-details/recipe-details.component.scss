@@ -84,3 +84,26 @@
     disabled:pointer-events-none
   ;
 }
+
+.container {
+  @apply
+  mt-4
+    grid
+    grid-cols-12
+    gap-4
+  ;
+}
+
+.main {
+  @apply
+    lg:col-span-8
+    col-span-12
+  ;
+}
+
+.sidebar {
+  @apply
+    lg:col-span-4
+    col-span-12
+  ;
+}

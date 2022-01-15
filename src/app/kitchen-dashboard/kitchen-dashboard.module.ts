@@ -14,8 +14,8 @@ import { AddIngredientModalComponent } from './features/ingredients/add-ingredie
 import { EditIngredientModalComponent } from './features/ingredients/edit-ingredient-modal/edit-ingredient-modal.component';
 import { AddRecipeToolbarComponent } from './features/recipes/add-recipe-toolbar/add-recipe-toolbar.component';
 import { SearchRecipeToolbarComponent } from './features/recipes/search-recipe-toolbar/search-recipe-toolbar.component';
-import { RecipeDetailsComponent } from './features/recipes/recipe-details/recipe-details.component';
-import { IngredientSelectorComponent } from './features/recipes/recipe-details/ingredient-selector/ingredient-selector.component';
+import { RecipeDetailsComponent } from './features/recipe-details/recipe-details.component';
+import { IngredientSelectorComponent } from './features/recipe-details/ingredient-selector/ingredient-selector.component';
 
 @NgModule({
   declarations: [

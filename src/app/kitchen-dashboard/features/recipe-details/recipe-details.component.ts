@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { RecipeDetails } from 'src/app/kitchen-dashboard/models/recipe-details.model';
 import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-details',
@@ -8,12 +9,6 @@ import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service
   styleUrls: ['./recipe-details.component.scss']
 })
 export class RecipeDetailsComponent implements OnInit {
-
-  @Input() recipeId: number;
-  @Output() update = new EventEmitter<RecipeDetails>();
-  @Output() cancel = new EventEmitter<void>();
-  @Output() delete = new EventEmitter<number>();
-
   recipe: RecipeDetails;
   recipeNameEditText: string;
   recipeNameEditible = false;
@@ -21,10 +16,11 @@ export class RecipeDetailsComponent implements OnInit {
   recipeDescriptionEditText: string;
   recipeDescriptionEditible = false;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.recipeService.getRecipesDetails(this.recipeId)
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.recipeService.getRecipesDetails(id)
       .subscribe(recipe => {
         this.recipe = recipe;
         this.recipeNameEditText = recipe.name;
@@ -60,15 +56,12 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   onUpdateClicked(): void {
-    this.update.emit(this.recipe);
   }
 
   onDeleteClicked(): void {
-    this.delete.emit(this.recipe.id);
   }
 
   onCancelClicked(): void {
-    this.cancel.emit();
   }
 
   isRecipeNameValid(): boolean {
