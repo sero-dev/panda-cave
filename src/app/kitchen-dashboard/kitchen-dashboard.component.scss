@@ -8,7 +8,7 @@
 
 .container {
   @apply 
-    max-w-5xl 
+    max-w-7xl 
     mx-auto
   ;
 }
@@ -16,13 +16,13 @@
 .kitchen-content {
   @apply
     col-span-12
-    md:col-span-9
+    lg:col-span-10
   ;
 }
 
 .kitchen-menu {
   @apply
-    md:col-span-3
+    lg:col-span-2
     col-span-12
   ;
   
@@ -30,7 +30,7 @@
     @apply
       flex
       justify-around
-      md:flex-col
+      lg:flex-col
     ;
 
     li {

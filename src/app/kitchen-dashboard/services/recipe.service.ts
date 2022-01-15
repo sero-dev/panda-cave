@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { RecipeDetails } from '../models/recipe-details.model';
 import { Recipe } from '../models/recipe.model';
 
 @Injectable({
@@ -14,6 +15,10 @@ export class RecipeService {
 
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.recipesUrl);
+  }
+
+  getRecipesDetails(recipeId: number): Observable<RecipeDetails> {
+    return this.http.get<RecipeDetails>(`${this.recipesUrl}/${recipeId}`);
   }
 
   addRecipe(recipeName: string): Observable<void> {

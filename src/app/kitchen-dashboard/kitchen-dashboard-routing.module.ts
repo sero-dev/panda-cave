@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IngredientsComponent } from './features/ingredients/ingredients.component';
-import { RecipeListComponent } from './features/recipe-list/recipe-list.component';
+import { RecipesComponent } from './features/recipes/recipes.component';
 import { ShoppingCartComponent } from './features/shopping-cart/shopping-cart.component';
 import { WeeklyMenuComponent } from './features/weekly-menu/weekly-menu.component';
 import { KitchenDashboardComponent } from './kitchen-dashboard.component';
@@ -9,7 +9,7 @@ import { KitchenDashboardComponent } from './kitchen-dashboard.component';
 const routes: Routes = [
   {
     path: 'kitchen', component: KitchenDashboardComponent, children: [
-      { path: 'recipes', component: RecipeListComponent },
+      { path: 'recipes', component: RecipesComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'ingredients', component: IngredientsComponent },
       { path: 'weekly-menu', component: WeeklyMenuComponent },

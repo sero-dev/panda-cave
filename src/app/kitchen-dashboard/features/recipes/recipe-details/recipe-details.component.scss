@@ -1,0 +1,86 @@
+.top-row {
+  @apply
+    flex
+    flex-wrap
+    justify-between
+    mb-1
+  ;
+}
+
+.recipe-name {
+  @apply
+    bg-transparent
+    border-0
+    text-3xl
+    font-semibold
+    pt-0
+    pl-0
+    border-b-2
+    border-gray-500
+    focus:border-green-500
+    w-auto
+    focus:outline-none
+    focus:ring-0
+    disabled:border-transparent
+  ;
+}
+
+.recipe-description {
+  @apply
+    bg-transparent
+    border-0
+    pt-0
+    pl-0
+    border-b-2
+    resize-none
+    w-full
+    border-gray-500
+    focus:border-green-500
+    focus:outline-none
+    focus:ring-0
+    disabled:border-transparent
+  ;
+
+  max-width: 600px;
+}
+
+.title-button {
+  @apply
+    ml-2
+    mb-2
+  ;
+  
+  svg {
+    @apply
+      w-6
+      h-6
+    ;
+  }
+}
+
+.edit-title-button {
+  @extend .title-button;
+  @apply
+    text-gray-500
+    hover:text-gray-100
+    
+  ;
+}
+
+.cancel-title-button {
+  @extend .title-button;
+  @apply
+    text-gray-500
+    hover:text-red-500
+  ;
+}
+
+.confirm-title-button {
+  @extend .title-button;
+  @apply
+    text-gray-500
+    hover:text-green-500
+    disabled:text-gray-700
+    disabled:pointer-events-none
+  ;
+}

@@ -1,0 +1,40 @@
+<app-add-recipe-toolbar 
+  *ngIf="!editRecipeModeEnabled && addRecipeModeEnabled"
+  (add)="addRecipe($event)"
+  (cancel)="disableAddRecipeMode()"
+></app-add-recipe-toolbar>
+
+<app-search-recipe-toolbar
+  *ngIf="!editRecipeModeEnabled && !addRecipeModeEnabled"
+  (search)="searchForRecipes($event)"
+  (addClick)="enableAddRecipeMode()"
+></app-search-recipe-toolbar>
+
+<ul *ngIf="!editRecipeModeEnabled" class="recipe-list">
+  <li 
+    (click)="enableEditRecipeMode(recipe)"
+    (contextmenu)="openItemContextMenu($event, recipe); false"
+    *ngFor="let recipe of recipes" 
+    class="recipe-item">
+    {{ recipe.name }}
+  </li>
+</ul>
+
+<app-recipe-details
+  *ngIf="editRecipeModeEnabled"
+  [recipeId]="selectedRecipe.id"
+  (update)="updateRecipe($event)"
+  (cancel)="disableEditRecipeMode()"
+  (delete)="deleteRecipe($event)"
+></app-recipe-details>
+
+<div *ngIf="showRecipeContextMenu">
+  <app-recipe-context-menu
+    [positionX]="contextMenuPositionX"
+    [positionY]="contextMenuPositionY"
+    [recipe]="selectedRecipe"
+  >
+  </app-recipe-context-menu>
+</div>
+
+
