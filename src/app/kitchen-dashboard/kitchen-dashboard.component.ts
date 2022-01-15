@@ -11,5 +11,4 @@ export class KitchenDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
