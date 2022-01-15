@@ -1,32 +1,15 @@
-<app-add-recipe-toolbar 
-  *ngIf="!editRecipeModeEnabled && addRecipeModeEnabled"
-  (add)="addRecipe($event)"
-  (cancel)="disableAddRecipeMode()"
-></app-add-recipe-toolbar>
+<section *ngIf="addRecipeModeEnabled; then addRecipeToolbar else searchRecipeToolbar"></section>
 
-<app-search-recipe-toolbar
-  *ngIf="!editRecipeModeEnabled && !addRecipeModeEnabled"
-  (search)="searchForRecipes($event)"
-  (addClick)="enableAddRecipeMode()"
-></app-search-recipe-toolbar>
-
-<ul *ngIf="!editRecipeModeEnabled" class="recipe-list">
-  <li 
-    (click)="enableEditRecipeMode(recipe)"
+<ul class="recipe-list">
+  <a
+    [routerLink]="[recipe.id, 'edit']"
+    routerLinkActive #editRecipe="routerLinkActive"
     (contextmenu)="openItemContextMenu($event, recipe); false"
     *ngFor="let recipe of recipes" 
     class="recipe-item">
     {{ recipe.name }}
-  </li>
+  </a>
 </ul>
-
-<app-recipe-details
-  *ngIf="editRecipeModeEnabled"
-  [recipeId]="selectedRecipe.id"
-  (update)="updateRecipe($event)"
-  (cancel)="disableEditRecipeMode()"
-  (delete)="deleteRecipe($event)"
-></app-recipe-details>
 
 <div *ngIf="showRecipeContextMenu">
   <app-recipe-context-menu
@@ -36,5 +19,19 @@
   >
   </app-recipe-context-menu>
 </div>
+
+<ng-template #addRecipeToolbar>
+  <app-add-recipe-toolbar 
+    (add)="addRecipe($event)"
+    (cancel)="disableAddRecipeMode()"
+  ></app-add-recipe-toolbar>
+</ng-template>
+
+<ng-template #searchRecipeToolbar>
+  <app-search-recipe-toolbar 
+    (search)="searchForRecipes($event)"
+    (addClick)="enableAddRecipeMode()"
+  ></app-search-recipe-toolbar>
+</ng-template>
 
 
