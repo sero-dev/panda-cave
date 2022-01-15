@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeDetails } from 'src/app/kitchen-dashboard/models/recipe-details.model';
 import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-details',
@@ -16,7 +16,11 @@ export class RecipeDetailsComponent implements OnInit {
   recipeDescriptionEditText: string;
   recipeDescriptionEditible = false;
 
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute) {}
+  constructor(
+    private recipeService: RecipeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -56,15 +60,20 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   onUpdateClicked(): void {
+    this.recipeService.updateRecipe(this.recipe)
+      .subscribe(() => this.router.navigate(['/kitchen']));
   }
 
   onDeleteClicked(): void {
+    this.recipeService.deleteRecipe(this.recipe.id)
+      .subscribe(() => this.router.navigate(['/kitchen']));
   }
 
   onCancelClicked(): void {
+    this.router.navigate(['/kitchen']);
   }
 
   isRecipeNameValid(): boolean {
-    return this.recipeNameEditText.trim() !== ''
+    return this.recipeNameEditText.trim() !== '';
   }
 }
