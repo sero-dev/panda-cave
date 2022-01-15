@@ -1,8 +1,7 @@
 import { Ingredient } from "./ingredient.model";
+import { Recipe } from "./recipe.model";
 
-export class RecipeDetails {
-  id: number;
-  name: string;
+export class RecipeDetails extends Recipe {
   ingredients: RecipeIngredients[];
 }
 
