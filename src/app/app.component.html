@@ -1,6 +1,6 @@
 <div class="page">
   <header class="bg-purple-800 p-2 text-white">
-    <div class="max-w-7xl mx-auto">
+    <div class="container mx-auto">
       <div class="flex justify-between items-center">
         <div class="flex items-center">
           <img class="logo-image" src="/assets/img/logo.png"/>
@@ -8,10 +8,10 @@
         </div>
         
         <nav>
-          <ul class="flex">
-            <li class="mr-4"><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-            <li class="mr-4"><a routerLink="kitchen" routerLinkActive="active">Kitchen</a></li>
-            <li class="mr-4"><a routerLink="finance" routerLinkActive="active">Finance</a></li>
+          <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="kitchen" routerLinkActive="active">Kitchen</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="finance" routerLinkActive="active">Finance</a></li>
           </ul>
         </nav>
       </div>
