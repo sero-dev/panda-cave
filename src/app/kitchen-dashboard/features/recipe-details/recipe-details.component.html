@@ -5,7 +5,8 @@
         <input 
           class="recipe-name" 
           type="text" 
-          (keypress)="isRecipeNameValid() && $event.key =='Enter' ? confirmRecipeNameEdit() : null" 
+          (keypress)="isRecipeNameValid() && $event.key =='Enter' ? confirmRecipeNameEdit() : null"
+          placeholder="Enter recipe name..."
           [disabled]="!recipeNameEditible" 
           [(ngModel)]="recipeNameEditText">
         <div *ngIf="!recipeNameEditible">
