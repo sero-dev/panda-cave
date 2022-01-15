@@ -12,7 +12,6 @@ export class RecipesComponent implements OnInit {
 
   recipes: Recipe[] = [];
   addRecipeModeEnabled: boolean = false;
-  editRecipeModeEnabled: boolean = false;
   showRecipeContextMenu: boolean = false;
   contextMenuPositionX: number;
   contextMenuPositionY: number;
@@ -29,12 +28,6 @@ export class RecipesComponent implements OnInit {
       .subscribe(recipes => this.recipes = recipes);
   }
 
-  refreshList(): void {
-    this.getRecipes();
-    this.disableAddRecipeMode();
-    this.disableEditRecipeMode();
-  }
-
   enableAddRecipeMode(): void {
     this.addRecipeModeEnabled = true;
   }
@@ -42,15 +35,6 @@ export class RecipesComponent implements OnInit {
   disableAddRecipeMode(): void {
     this.addRecipeModeEnabled = false;
     this.getRecipes();
-  }
-
-  enableEditRecipeMode(recipe: Recipe) {
-    this.selectedRecipe = JSON.parse(JSON.stringify(recipe));
-    this.editRecipeModeEnabled = true;
-  }
-
-  disableEditRecipeMode(): void {
-    this.editRecipeModeEnabled = false;
   }
 
   openItemContextMenu(event: MouseEvent, recipe: Recipe) {
@@ -72,17 +56,7 @@ export class RecipesComponent implements OnInit {
 
   addRecipe(recipeName: string) {
     this.recipeService.addRecipe(recipeName)
-      .subscribe(() => this.refreshList());
-  }
-
-  updateRecipe(recipe: RecipeDetails) {
-    this.recipeService.updateRecipe(recipe)
-      .subscribe(() => this.refreshList());
-  }
-
-  deleteRecipe(recipeId: number) {
-    this.recipeService.deleteRecipe(recipeId)
-      .subscribe(() => this.refreshList());
+      .subscribe(() => this.disableAddRecipeMode());
   }
 
   @HostListener('document:click')
