@@ -6,13 +6,13 @@
     rounded-md
     transition-all
     font-medium
-    hover:ease-in
     shadow-sm
-    border 
+    border
     focus:outline-none
     disabled:bg-gray-400
     disabled:cursor-not-allowed
     disabled:pointer-events-none
+    hover:ease-in-out
   ;
 }
 
@@ -21,9 +21,9 @@
   @apply
     bg-green-600
     hover:bg-green-700
+    hover:border-green-700
     active:bg-green-800
     focus:ring-green-500
-    hover:ease-in-out
   ;
 }
 
@@ -32,9 +32,9 @@
   @apply
     bg-blue-600
     hover:bg-blue-700
+    hover:border-blue-700
     active:bg-blue-800
     focus:ring-blue-500 
-    hover:ease-in-out
   ;
 }
 
@@ -43,9 +43,9 @@
   @apply
     bg-purple-600
     hover:bg-purple-700
+    hover:border-purple-700
     active:bg-purple-800
     focus:ring-purple-500 
-    hover:ease-in-out
   ;
 }
 
@@ -54,9 +54,9 @@
   @apply
     bg-red-600
     hover:bg-red-700
+    hover:border-red-700
     active:bg-red-800
     focus:ring-red-500 
-    hover:ease-in-out
   ;
 }
 
@@ -66,33 +66,25 @@
   @apply
     bg-gray-800
     hover:bg-gray-700
+    hover:border-gray-700
     active:bg-gray-600
     focus:ring-gray-500 
-    hover:ease-in-out
   ;
 }
 
 .btn-container {
   @apply
     flex
+    space-x-3
 }
 
-.btn-container-r {
-  @extend .btn-container;
-  button {
-    @apply
-      mr-2
-      last:mr-0;
-    ;
-  }
-}
-
-.btn-container-l {
-  @extend .btn-container;
-  button {
-    @apply
-      ml-2
-      first:ml-0;
-    ;
-  }
+.btn-green-outline {
+  @extend .btn-green;
+  @apply
+    bg-gray-800
+    border-2
+    border-green-700
+    hover:border-0
+    active:border-0
+  ;
 }

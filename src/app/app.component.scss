@@ -35,20 +35,13 @@
 .nav-list {
   @apply
     flex
-  ;
-}
-
-.nav-item {
-  @apply
-    mr-2
-    last:mr-0
+    space-x-2
   ;
 }
 
 .nav-link {
   @apply
-    px-3
-    last:pr-0
+    px-2
   ;
 }
 
