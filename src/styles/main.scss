@@ -11,3 +11,11 @@ h1 {
     font-semibold
   ;
 }
+
+h2 {
+  @apply 
+    text-lg
+    font-semibold
+    mb-2
+  ;
+}
