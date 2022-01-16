@@ -1,0 +1,41 @@
+.content {
+  @apply
+    mt-4
+    grid
+    grid-cols-12
+    gap-5
+  ;
+}
+
+.paper {
+  @apply
+    bg-gray-800
+    rounded-md
+    p-3
+    border-2
+    border-gray-700
+  ;
+}
+
+.title {
+  @apply
+    text-lg
+    font-semibold
+  ;
+}
+
+.main {
+  @extend .paper;
+  @apply
+    lg:col-span-8
+    col-span-12
+  ;
+}
+
+.sidebar {
+  @extend .paper;
+  @apply
+    lg:col-span-4
+    col-span-12
+  ;
+}
