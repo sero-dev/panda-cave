@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeDetails } from 'src/app/kitchen-dashboard/models/recipe-details.model';
 import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WeeklyMenuService } from '../../services/weekly-menu.service';
+import { MealType, WeeklyMenuItem } from '../../models/weekly-menu.model';
 
 @Component({
   selector: 'app-recipe-details',
@@ -10,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RecipeDetailsComponent implements OnInit {
   recipe: RecipeDetails;
+  weeklyMenu: WeeklyMenuItem[];
+
   recipeNameEditText: string;
   recipeNameEditible = false;
 
@@ -19,7 +23,8 @@ export class RecipeDetailsComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private weeklyMenuService: WeeklyMenuService
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +34,9 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipe = recipe;
         this.recipeNameEditText = recipe.name;
       });
+    
+    this.weeklyMenuService.getWeeklyMenu()
+      .subscribe(menu => this.weeklyMenu = menu);
   }
 
   enableRecipeNameEdit(): void {
@@ -61,7 +69,10 @@ export class RecipeDetailsComponent implements OnInit {
 
   onUpdateClicked(): void {
     this.recipeService.updateRecipe(this.recipe)
-      .subscribe(() => this.router.navigate(['/kitchen']));
+      .subscribe(() => {
+        this.weeklyMenuService.updateWeeklyMenu(this.weeklyMenu)
+          .subscribe(() => this.router.navigate(['/kitchen']));
+      });
   }
 
   onDeleteClicked(): void {
@@ -71,6 +82,17 @@ export class RecipeDetailsComponent implements OnInit {
 
   onCancelClicked(): void {
     this.router.navigate(['/kitchen']);
+  }
+
+  addToWeeklyMenu(item: WeeklyMenuItem, mealType: MealType) {
+    switch (mealType) {
+      case MealType.Lunch:
+        item.lunch = this.recipe;
+        break;
+      case MealType.Dinner:
+        item.dinner = this.recipe;
+        break;
+    }
   }
 
   isRecipeNameValid(): boolean {

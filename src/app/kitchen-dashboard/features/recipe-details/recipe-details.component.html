@@ -65,39 +65,15 @@
     </div>
 </div>
 
-<div class="ingredient-container my-5">
-  <main class="main">
-    <h2 class="ingredient-title">Search for Ingredient</h2>
-  </main>
-  <aside class="sidebar">
-    <h2 class="ingredient-title">Ingredient List</h2>
-  </aside>
-</div>
+<section class="mb-8">
+  <app-ingredient-selector>
+  </app-ingredient-selector>
+</section>
 
-<div class="paper">
-  <h2 class="ingredient-title mb-5">Add to Weekly Menu</h2>
-  <table class="weekly-menu-table">
-    <thead>
-      <tr>
-        <th></th>
-        <th *ngFor="let item of weeklyMenu">{{item.day}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>Lunch</th>
-        <td *ngFor="let item of weeklyMenu">
-          <span *ngIf="item.lunch">{{item.lunch?.name}}</span>
-          <button class="btn-green-outline" *ngIf="!item.lunch">Add</button>
-        </td>
-      </tr>
-      <tr>
-        <th>Dinner</th>
-        <td *ngFor="let item of weeklyMenu">
-          <span *ngIf="item.dinner">{{item.dinner?.name}}</span>
-          <button class="btn-green-outline"  *ngIf="!item.dinner">Add</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<section class="mb-5">
+  <app-weekly-menu-picker
+    [weeklyMenu]="weeklyMenu"
+    (addToLunch)="addToWeeklyMenu($event, 0)"
+    (addToDinner)="addToWeeklyMenu($event, 1)"
+  ></app-weekly-menu-picker>
+</section>

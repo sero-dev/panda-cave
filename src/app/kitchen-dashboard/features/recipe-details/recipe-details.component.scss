@@ -1,3 +1,7 @@
+.header {
+  @apply mb-8;
+}
+
 .top-row {
   @apply
     flex
@@ -13,7 +17,7 @@
     border-0
     text-3xl
     font-semibold
-    pt-0
+    py-0
     pl-0
     border-b-2
     border-gray-500
@@ -33,6 +37,7 @@
     pl-0
     border-b-2
     resize-none
+    text-gray-300
     w-full
     border-gray-500
     focus:border-green-500
@@ -85,25 +90,9 @@
   ;
 }
 
-.container {
-  @apply
-  mt-4
-    grid
-    grid-cols-12
-    gap-4
-  ;
-}
 
-.main {
-  @apply
-    lg:col-span-8
-    col-span-12
-  ;
-}
 
-.sidebar {
-  @apply
-    lg:col-span-4
-    col-span-12
-  ;
-}
+
+
+
+
