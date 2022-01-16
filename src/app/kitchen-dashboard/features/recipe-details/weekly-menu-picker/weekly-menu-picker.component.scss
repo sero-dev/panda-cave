@@ -1,0 +1,39 @@
+.weekly-menu {
+  @apply 
+    border-2
+    rounded-md
+    border-gray-700
+  ;
+}
+
+.table-row {
+  @apply
+    grid 
+    grid-cols-8
+    text-center
+  ;
+  
+  span {
+    @apply
+      py-3
+      flex
+      items-center
+      justify-center
+    ;
+  }
+}
+
+.table-header {
+  @extend .table-row;
+  @apply
+    font-semibold
+    bg-green-600
+    rounded-t-md
+  ;
+
+  span {
+    @apply
+      py-3
+    ;
+  }
+}
