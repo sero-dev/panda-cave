@@ -16,6 +16,7 @@ import { AddRecipeToolbarComponent } from './features/recipes/add-recipe-toolbar
 import { SearchRecipeToolbarComponent } from './features/recipes/search-recipe-toolbar/search-recipe-toolbar.component';
 import { RecipeDetailsComponent } from './features/recipe-details/recipe-details.component';
 import { IngredientSelectorComponent } from './features/recipe-details/ingredient-selector/ingredient-selector.component';
+import { WeeklyMenuPickerComponent } from './features/recipe-details/weekly-menu-picker/weekly-menu-picker.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { IngredientSelectorComponent } from './features/recipe-details/ingredien
     AddRecipeToolbarComponent,
     SearchRecipeToolbarComponent,
     RecipeDetailsComponent,
-    IngredientSelectorComponent
+    IngredientSelectorComponent,
+    WeeklyMenuPickerComponent
   ],
   imports: [
     CommonModule,
