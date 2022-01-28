@@ -9,7 +9,7 @@ import { Recipe } from '../models/recipe.model';
 })
 export class RecipeService {
 
-  private recipesUrl = 'http://localhost:5000/api/recipe'
+  private recipesUrl = 'https://Titan:5001/api/recipe'
 
   constructor(private http: HttpClient) {}
 

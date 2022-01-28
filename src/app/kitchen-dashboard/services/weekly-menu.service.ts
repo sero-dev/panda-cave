@@ -8,7 +8,7 @@ import { WeeklyMenuItem } from '../models/weekly-menu.model';
 })
 export class WeeklyMenuService {
   
-  private weeklyMenuUrl = 'http://localhost:5000/api/weeklymenu'
+  private weeklyMenuUrl = 'https://Titan:5001/api/weeklymenu'
 
   constructor(private http: HttpClient) { }
 
