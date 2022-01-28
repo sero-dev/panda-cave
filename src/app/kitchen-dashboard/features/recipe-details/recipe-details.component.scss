@@ -89,9 +89,19 @@
   ;
 }
 
+.detail-container {
+  @apply
+    flex-grow 
+    overflow-y-scroll
+    mb-4
+  ;
 
-
-
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 
 
