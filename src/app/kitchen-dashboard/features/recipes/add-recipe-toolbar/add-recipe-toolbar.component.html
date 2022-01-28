@@ -14,7 +14,7 @@
   </div>
 
   <div class="btn-container">
-    <button class="btn-blue" [disabled]="!isRecipeNameValid()" (click)="onAddClicked()">Add</button>
+    <button class="btn-blue md:block hidden" [disabled]="!isRecipeNameValid()" (click)="onAddClicked()">Add</button>
     <button class="btn-cancel" (click)="onCancelClicked()">Cancel</button>
   </div>
 </div>
