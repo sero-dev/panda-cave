@@ -1,5 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { RecipeDetails } from '../../models/recipe-details.model';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeService } from '../../services/recipe.service';
 
@@ -12,9 +11,6 @@ export class RecipesComponent implements OnInit {
 
   recipes: Recipe[] = [];
   addRecipeModeEnabled: boolean = false;
-  showRecipeContextMenu: boolean = false;
-  contextMenuPositionX: number;
-  contextMenuPositionY: number;
   selectedRecipe: Recipe;
 
   constructor(private recipeService: RecipeService) { }
@@ -37,13 +33,6 @@ export class RecipesComponent implements OnInit {
     this.getRecipes();
   }
 
-  openItemContextMenu(event: MouseEvent, recipe: Recipe) {
-    this.showRecipeContextMenu = true;
-    this.contextMenuPositionX = event.clientX;
-    this.contextMenuPositionY = event.clientY;
-    this.selectedRecipe = recipe;
-  }
-
   searchForRecipes(searchText: string) {
     if (searchText.trim() === "") {
       this.getRecipes();
@@ -57,10 +46,5 @@ export class RecipesComponent implements OnInit {
   addRecipe(recipeName: string) {
     this.recipeService.addRecipe(recipeName)
       .subscribe(() => this.disableAddRecipeMode());
-  }
-
-  @HostListener('document:click')
-  documentClick(): void {
-    this.showRecipeContextMenu = false;
   }
 }
