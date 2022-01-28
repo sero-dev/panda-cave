@@ -4,21 +4,11 @@
   <a
     [routerLink]="[recipe.id, 'edit']"
     routerLinkActive #editRecipe="routerLinkActive"
-    (contextmenu)="openItemContextMenu($event, recipe); false"
     *ngFor="let recipe of recipes" 
     class="recipe-item">
     {{ recipe.name }}
   </a>
 </ul>
-
-<div *ngIf="showRecipeContextMenu">
-  <app-recipe-context-menu
-    [positionX]="contextMenuPositionX"
-    [positionY]="contextMenuPositionY"
-    [recipe]="selectedRecipe"
-  >
-  </app-recipe-context-menu>
-</div>
 
 <ng-template #addRecipeToolbar>
   <app-add-recipe-toolbar 
@@ -33,5 +23,3 @@
     (addClick)="enableAddRecipeMode()"
   ></app-search-recipe-toolbar>
 </ng-template>
-
-
