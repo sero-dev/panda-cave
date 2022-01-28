@@ -19,3 +19,10 @@ h2 {
     mb-2
   ;
 }
+
+.mobile-hide {
+  @apply
+    md:block 
+    hidden
+  ;
+}
