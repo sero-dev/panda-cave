@@ -78,6 +78,25 @@
     sm:space-x-3
 }
 
+.btn-container-desktop {
+  @extend .btn-container;
+  @apply
+    sm:flex
+    hidden
+  ;
+}
+
+.btn-container-mobile {
+  @extend .btn-container;
+  @apply
+    sm:hidden
+    fixed
+    bottom-0
+    right-0
+    z-50
+  ;
+}
+
 .btn-green-outline {
   @extend .btn-green;
   @apply
