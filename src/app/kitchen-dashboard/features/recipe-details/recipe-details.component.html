@@ -66,7 +66,10 @@
 </div>
 
 <section class="mb-8">
-  <app-ingredient-selector>
+  <app-ingredient-selector
+    [ingredientList]="recipe ? recipe.ingredients : []"
+    (onIngredientListChange)="updateRecipeIngredientList($event)"
+  >
   </app-ingredient-selector>
 </section>
 

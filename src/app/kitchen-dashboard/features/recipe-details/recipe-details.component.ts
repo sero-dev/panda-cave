@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeDetails } from 'src/app/kitchen-dashboard/models/recipe-details.model';
+import { RecipeDetails, RecipeIngredient } from 'src/app/kitchen-dashboard/models/recipe-details.model';
 import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeeklyMenuService } from '../../services/weekly-menu.service';
@@ -93,6 +93,10 @@ export class RecipeDetailsComponent implements OnInit {
         item.dinner = this.recipe;
         break;
     }
+  }
+
+  updateRecipeIngredientList(ingredientList: RecipeIngredient[]): void {
+    this.recipe.ingredients = ingredientList;
   }
 
   isRecipeNameValid(): boolean {
