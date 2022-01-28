@@ -2,12 +2,12 @@ import { Ingredient } from "./ingredient.model";
 import { Recipe } from "./recipe.model";
 
 export class RecipeDetails extends Recipe {
-  ingredients: RecipeIngredients[];
+  ingredients: RecipeIngredient[];
 }
 
-export class RecipeIngredients {
+export class RecipeIngredient {
   id: number;
-  amount: number;
-  unitOfMeasure: string;
+  amount: number = 1;
+  unitOfMeasure: string = 'Unit';
   ingredient: Ingredient;
 }
