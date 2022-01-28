@@ -34,7 +34,8 @@
 
 .nav-list {
   @apply
-    flex
+    hidden
+    sm:flex
     space-x-2
   ;
 }
@@ -56,8 +57,13 @@
 }
 
 .footer {
-  @apply 
-    bg-purple-800 
+  @apply
+    hidden
+    sm:block
+    bg-gray-900
+    bg-opacity-60 
+    backdrop-filter 
+    backdrop-blur-lg
     text-sm 
     text-white 
     py-4
