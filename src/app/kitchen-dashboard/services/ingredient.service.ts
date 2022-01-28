@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientService {
 
-  private ingredientsUrl = 'https://Titan:5001/api/ingredient'
+  private ingredientsUrl = `${environment.recipeBookEndpoint}/ingredient`
 
   constructor(private http: HttpClient) { }
 

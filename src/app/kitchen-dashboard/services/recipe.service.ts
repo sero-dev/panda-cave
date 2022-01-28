@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { RecipeDetails } from '../models/recipe-details.model';
 import { Recipe } from '../models/recipe.model';
 
@@ -9,7 +10,7 @@ import { Recipe } from '../models/recipe.model';
 })
 export class RecipeService {
 
-  private recipesUrl = 'https://Titan:5001/api/recipe'
+  private recipesUrl = `${environment.recipeBookEndpoint}/recipe`
 
   constructor(private http: HttpClient) {}
 

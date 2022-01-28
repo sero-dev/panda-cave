@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { WeeklyMenuItem } from '../models/weekly-menu.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeeklyMenuService {
   
-  private weeklyMenuUrl = 'https://Titan:5001/api/weeklymenu'
+  private weeklyMenuUrl = `${environment.recipeBookEndpoint}/weeklymenu`
 
   constructor(private http: HttpClient) { }
 
