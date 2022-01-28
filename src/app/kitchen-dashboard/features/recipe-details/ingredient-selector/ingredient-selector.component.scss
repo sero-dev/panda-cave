@@ -27,7 +27,7 @@
 .main {
   @extend .paper;
   @apply
-    lg:col-span-8
+    lg:col-span-6
     col-span-12
   ;
 }
@@ -35,7 +35,80 @@
 .sidebar {
   @extend .paper;
   @apply
-    lg:col-span-4
+    lg:col-span-6
     col-span-12
   ;
+}
+
+.result {
+  @apply 
+    mb-1
+    flex 
+    justify-between 
+    items-center 
+    pl-4
+    p-1
+    rounded-md 
+    transition-all
+    ease-in
+    hover:bg-gray-700 
+  ;
+}
+
+.ingredient-item {
+  @apply
+    flex 
+    justify-end 
+    items-center
+    mb-1
+  ;
+
+  &:hover {
+    .delete-btn {
+      @apply
+        opacity-100
+      ;
+    }
+  }
+  
+  input {
+    @apply
+      p-2
+      bg-gray-900
+      border-2
+      border-gray-800
+      rounded-md
+    ;
+  }
+
+
+  .amount {
+    @apply
+      w-16
+      mr-2
+    ;
+  }
+
+  .unit-of-measure {
+    @apply
+      w-36
+      mr-5
+    ;
+  }
+
+  .name {
+    @apply
+      flex-grow
+      mr-4
+    ;
+  }
+
+  .delete-btn {
+    @apply 
+      text-red-500
+      ease-out 
+      opacity-0 
+      transition-all 
+    ;
+  }
 }
