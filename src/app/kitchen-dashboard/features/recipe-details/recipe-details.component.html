@@ -1,56 +1,57 @@
-<div class="header">
-  <div class="top-row">
-    <div class="flex items-end">
-      
-        <input 
-          class="recipe-name" 
-          type="text" 
-          (keypress)="isRecipeNameValid() && $event.key =='Enter' ? confirmRecipeNameEdit() : null"
-          placeholder="Enter recipe name..."
-          [disabled]="!recipeNameEditible" 
-          [(ngModel)]="recipeNameEditText">
-        <div *ngIf="!recipeNameEditible">
-          <button (click)="enableRecipeNameEdit()" class="edit-title-button">
+<div class="flex flex-col">
+  <div class="header">
+    <div class="top-row">
+      <div class="flex items-end">
+          <input 
+            class="recipe-name" 
+            type="text" 
+            (keypress)="isRecipeNameValid() && $event.key =='Enter' ? confirmRecipeNameEdit() : null"
+            placeholder="Enter recipe name..."
+            [disabled]="!recipeNameEditible" 
+            [(ngModel)]="recipeNameEditText">
+          
+          <div class="mobile-hide" *ngIf="!recipeNameEditible">
+            <button (click)="enableRecipeNameEdit()" class="edit-title-button">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            </button>
+          </div>
+        
+
+        <div class="mobile-hide" *ngIf="recipeNameEditible">
+          <button [disabled]="!isRecipeNameValid()" (click)="confirmRecipeNameEdit()" class="confirm-title-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+          <button (click)="cancelRecipeNameEdit()" class="cancel-title-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
-      
+      </div>
 
-      <div *ngIf="recipeNameEditible">
-        <button [disabled]="!isRecipeNameValid()" (click)="confirmRecipeNameEdit()" class="confirm-title-button">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-        </button>
-        <button (click)="cancelRecipeNameEdit()" class="cancel-title-button">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+      <div class="btn-container-desktop self-start">
+        <button class="btn-purple" (click)="onUpdateClicked()">Update</button>
+        <button class="btn-red" (click)="onDeleteClicked()">Delete</button>
+        <button class="btn-cancel" (click)="onCancelClicked()">Cancel</button>
       </div>
     </div>
 
-    <div class="btn-container self-start">
-      <button class="btn-purple" (click)="onUpdateClicked()">Update</button>
-      <button class="btn-red" (click)="onDeleteClicked()">Delete</button>
-      <button class="btn-cancel" (click)="onCancelClicked()">Cancel</button>
-    </div>
-  </div>
-
-  <div class="flex items-end">
+    <div class="flex items-end">
       <input [disabled]="!recipeDescriptionEditible" class="recipe-description" placeholder="Enter recipe description here..." />
-        <div *ngIf="!recipeDescriptionEditible">
-          <button (click)="enableRecipeDescriptionEdit()" class="edit-title-button">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-            </svg>
-          </button>
-        </div>
+      <div class="mobile-hide" *ngIf="!recipeDescriptionEditible">
+        <button (click)="enableRecipeDescriptionEdit()" class="edit-title-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+          </svg>
+        </button>
+      </div>
       
 
-      <div *ngIf="recipeDescriptionEditible">
+      <div class="mobile-hide" *ngIf="recipeDescriptionEditible">
         <button (click)="confirmRecipeDescriptionEdit()" class="confirm-title-button">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -63,20 +64,29 @@
         </button>
       </div>
     </div>
+  </div>
+
+  <div class="detail-container">
+    <section class="mb-8">
+      <app-ingredient-selector
+        [ingredientList]="recipe ? recipe.ingredients : []"
+        (onIngredientListChange)="updateRecipeIngredientList($event)"
+      >
+      </app-ingredient-selector>
+    </section>
+
+    <section class="mb-8 mobile-hide">
+      <app-weekly-menu-picker
+        [weeklyMenu]="weeklyMenu"
+        (addToLunch)="addToWeeklyMenu($event, 0)"
+        (addToDinner)="addToWeeklyMenu($event, 1)"
+      ></app-weekly-menu-picker>
+    </section>
+  </div>
 </div>
 
-<section class="mb-8">
-  <app-ingredient-selector
-    [ingredientList]="recipe ? recipe.ingredients : []"
-    (onIngredientListChange)="updateRecipeIngredientList($event)"
-  >
-  </app-ingredient-selector>
-</section>
-
-<section class="mb-8">
-  <app-weekly-menu-picker
-    [weeklyMenu]="weeklyMenu"
-    (addToLunch)="addToWeeklyMenu($event, 0)"
-    (addToDinner)="addToWeeklyMenu($event, 1)"
-  ></app-weekly-menu-picker>
-</section>
+<!-- <div class="btn-container-mobile self-start">
+  <button class="btn-purple" (click)="onUpdateClicked()">Update</button>
+  <button class="btn-red" (click)="onDeleteClicked()">Delete</button>
+  <button class="btn-cancel" (click)="onCancelClicked()">Cancel</button>
+</div> -->
