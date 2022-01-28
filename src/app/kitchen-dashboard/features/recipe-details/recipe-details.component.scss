@@ -1,5 +1,8 @@
 .header {
-  @apply mb-8;
+  @apply 
+    sm:mb-8
+    mb-1
+  ;
 }
 
 .top-row {
@@ -18,13 +21,19 @@
     font-semibold
     py-0
     pl-0
+    border-transparent
     border-b-2
-    border-gray-500
     focus:border-green-500
-    w-auto
+    hover:cursor-pointer
+    focus:cursor-text
     focus:outline-none
+    box-content
+    w-80
+    sm:flex-grow
+    max-w-xl
     focus:ring-0
-    disabled:border-transparent
+    transition-all
+    ease-in-out
   ;
 }
 
@@ -34,15 +43,16 @@
     border-0
     pt-0
     pl-0
+    border-transparent
     border-b-2
     resize-none
     text-gray-300
     w-full
-    border-gray-500
+    hover:cursor-pointer
+    focus:cursor-text
     focus:border-green-500
     focus:outline-none
     focus:ring-0
-    disabled:border-transparent
   ;
 
   max-width: 600px;
@@ -60,33 +70,6 @@
       h-6
     ;
   }
-}
-
-.edit-title-button {
-  @extend .title-button;
-  @apply
-    text-gray-500
-    hover:text-gray-100
-    
-  ;
-}
-
-.cancel-title-button {
-  @extend .title-button;
-  @apply
-    text-gray-500
-    hover:text-red-500
-  ;
-}
-
-.confirm-title-button {
-  @extend .title-button;
-  @apply
-    text-gray-500
-    hover:text-green-500
-    disabled:text-gray-700
-    disabled:pointer-events-none
-  ;
 }
 
 .detail-container {
