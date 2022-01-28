@@ -1,41 +1,23 @@
-<div class="toolbar mb-4">
-  <div class="toolbar-input">
-    <div class="toolbar-icon-green">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    </div>
-    <input 
-      [ngModel]="searchText" 
-      (ngModelChange)="onSearchTextChange($event)" 
-      type="text" 
-      placeholder="Search for a ingredient...">
-  </div>
-
-  <button class="btn-green" (click)="openAddIngredientModal()">Add</button>
-</div>
+<section *ngIf="addIngredientModeEnabled; then addIngredientToolbar else searchIngredientToolbar"></section>
 
 <ul class="ingredient-list">
-  <li 
-    (click)="openEditIngredientModal(ingredient)"
+  <li
     *ngFor="let ingredient of ingredients" 
     class="ingredient-item">
     {{ ingredient.name }}
   </li>
 </ul>
 
-<div *ngIf="showAddIngredientModal">
-  <app-add-ingredient-modal 
-    (onIngredientAdded)="refreshList()" 
-    (onCancelled)="closeAddIngredientModal()">
-  </app-add-ingredient-modal>
-</div>
+<ng-template #addIngredientToolbar>
+  <app-add-ingredient-toolbar 
+    (add)="addIngredient($event)"
+    (cancel)="disableAddIngredientMode()"
+  ></app-add-ingredient-toolbar>
+</ng-template>
 
-<div *ngIf="showEditIngredientModal">
-  <app-edit-ingredient-modal
-    [ingredient]="selectedIngredient"
-    (onIngredientUpdated)="refreshList()"
-    (onIngredientDeleted)="refreshList()"
-    (onCancelled)="closeEditIngredientModal()">
-  </app-edit-ingredient-modal>
-</div>
+<ng-template #searchIngredientToolbar>
+  <app-search-ingredient-toolbar 
+    (search)="searchForIngredients($event)"
+    (addClick)="enableAddIngredientMode()"
+  ></app-search-ingredient-toolbar>
+</ng-template>

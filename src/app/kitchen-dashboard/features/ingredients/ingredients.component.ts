@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../../models/ingredient.model';
 import { IngredientService } from '../../services/ingredient.service';
 
@@ -10,9 +10,7 @@ import { IngredientService } from '../../services/ingredient.service';
 export class IngredientsComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
-  showAddIngredientModal: boolean = false;
-  showEditIngredientModal: boolean = false;
-  selectedIngredient: Ingredient;
+  addIngredientModeEnabled: boolean = false;
   searchText: string;
 
   constructor(private ingredientService: IngredientService) { }
@@ -26,28 +24,33 @@ export class IngredientsComponent implements OnInit {
       .subscribe(ingredients => this.ingredients = ingredients);
   }
 
+  addIngredient(ingredient: string): void {
+    this.ingredientService.addIngredient(ingredient)
+      .subscribe(() => this.disableAddIngredientMode())
+  }
+
+  enableAddIngredientMode(): void {
+    this.addIngredientModeEnabled = true;
+  }
+
+  disableAddIngredientMode(): void {
+    this.addIngredientModeEnabled = false;
+    this.getIngredients();
+  }
+
+  searchForIngredients(searchText: string): void {
+    if (searchText.trim() === "") {
+      this.getIngredients();
+      return;
+    }
+
+    this.ingredientService.searchIngredients(searchText)
+      .subscribe(ingredients => this.ingredients = ingredients);
+  }
+
   refreshList(): void {
     this.searchText = '';
     this.getIngredients();
-    this.closeAddIngredientModal();
-    this.closeEditIngredientModal();
-  }
-
-  openAddIngredientModal() {
-    this.showAddIngredientModal = true;
-  }
-
-  openEditIngredientModal(ingredient: Ingredient) {
-    this.selectedIngredient = JSON.parse(JSON.stringify(ingredient));
-    this.showEditIngredientModal = true;
-  }
-
-  closeAddIngredientModal(): void {
-    this.showAddIngredientModal = false;
-  }
-
-  closeEditIngredientModal(): void {
-    this.showEditIngredientModal = false;
   }
 
   onSearchTextChange(searchText: string) {
