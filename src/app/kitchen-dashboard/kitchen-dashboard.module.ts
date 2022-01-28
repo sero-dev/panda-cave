@@ -8,15 +8,14 @@ import { WeeklyMenuComponent } from './features/weekly-menu/weekly-menu.componen
 import { RecipesComponent } from './features/recipes/recipes.component';
 import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu.component';
 import { SelectRecipeModalComponent } from './features/weekly-menu/select-recipe-modal/select-recipe-modal.component';
-import { RecipeContextMenuComponent } from './features/recipes/recipe-context-menu/recipe-context-menu.component';
 import { IngredientsComponent } from './features/ingredients/ingredients.component';
-import { AddIngredientModalComponent } from './features/ingredients/add-ingredient-modal/add-ingredient-modal.component';
-import { EditIngredientModalComponent } from './features/ingredients/edit-ingredient-modal/edit-ingredient-modal.component';
 import { AddRecipeToolbarComponent } from './features/recipes/add-recipe-toolbar/add-recipe-toolbar.component';
 import { SearchRecipeToolbarComponent } from './features/recipes/search-recipe-toolbar/search-recipe-toolbar.component';
 import { RecipeDetailsComponent } from './features/recipe-details/recipe-details.component';
 import { IngredientSelectorComponent } from './features/recipe-details/ingredient-selector/ingredient-selector.component';
 import { WeeklyMenuPickerComponent } from './features/recipe-details/weekly-menu-picker/weekly-menu-picker.component';
+import { AddIngredientToolbarComponent } from './features/ingredients/add-ingredient-toolbar/add-ingredient-toolbar.component';
+import { SearchIngredientToolbarComponent } from './features/ingredients/search-ingredient-toolbar/search-ingredient-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +25,14 @@ import { WeeklyMenuPickerComponent } from './features/recipe-details/weekly-menu
     WeeklyMenuComponent,
     DailyMenuComponent,
     SelectRecipeModalComponent,
-    RecipeContextMenuComponent,
     IngredientsComponent,
-    AddIngredientModalComponent,
-    EditIngredientModalComponent,
     AddRecipeToolbarComponent,
     SearchRecipeToolbarComponent,
     RecipeDetailsComponent,
     IngredientSelectorComponent,
-    WeeklyMenuPickerComponent
+    WeeklyMenuPickerComponent,
+    AddIngredientToolbarComponent,
+    SearchIngredientToolbarComponent
   ],
   imports: [
     CommonModule,
