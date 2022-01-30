@@ -48,7 +48,14 @@ h2 {
 
 .desktop-only {
   @apply
-    md:block 
+    sm:block 
     hidden
+  ;
+}
+
+.mobile-only {
+  @apply
+    sm:hidden
+    block
   ;
 }
