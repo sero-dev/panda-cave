@@ -13,12 +13,7 @@ import { MealType, WeeklyMenuItem } from '../../models/weekly-menu.model';
 export class RecipeDetailsComponent implements OnInit {
   recipe: RecipeDetails;
   weeklyMenu: WeeklyMenuItem[];
-
-  recipeNameEditText: string;
-  recipeNameEditible = false;
-
   recipeDescriptionEditText: string;
-  recipeDescriptionEditible = false;
 
   constructor(
     private recipeService: RecipeService,
@@ -32,39 +27,10 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeService.getRecipesDetails(id)
       .subscribe(recipe => {
         this.recipe = recipe;
-        this.recipeNameEditText = recipe.name;
       });
     
     this.weeklyMenuService.getWeeklyMenu()
       .subscribe(menu => this.weeklyMenu = menu);
-  }
-
-  enableRecipeNameEdit(): void {
-    this.recipeNameEditible = true;
-  }
-
-  confirmRecipeNameEdit(): void {
-    this.recipe.name = this.recipeNameEditText;
-    this.recipeNameEditible = false;
-  }
-  
-  cancelRecipeNameEdit(): void {
-    this.recipeNameEditText = this.recipe.name;
-    this.recipeNameEditible = false;
-  }
-
-  enableRecipeDescriptionEdit(): void {
-    this.recipeDescriptionEditible = true;
-  }
-
-  confirmRecipeDescriptionEdit(): void {
-    this.recipe.name = this.recipeDescriptionEditText;
-    this.recipeDescriptionEditible = false;
-  }
-
-  cancelRecipeDescriptionEdit(): void {
-    this.recipeDescriptionEditText = this.recipe.name;
-    this.recipeDescriptionEditible = false;
   }
 
   onUpdateClicked(): void {
@@ -97,9 +63,5 @@ export class RecipeDetailsComponent implements OnInit {
 
   updateRecipeIngredientList(ingredientList: RecipeIngredient[]): void {
     this.recipe.ingredients = ingredientList;
-  }
-
-  isRecipeNameValid(): boolean {
-    return this.recipeNameEditText.trim() !== '';
   }
 }

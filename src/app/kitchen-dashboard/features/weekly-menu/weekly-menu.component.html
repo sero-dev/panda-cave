@@ -1,6 +1,6 @@
 <div class="toolbar mb-4">
   <span></span>
-  <button class="btn-green">Print</button>
+  <button class="btn-green" (click)="clearWeeklyMenu()">Clear</button>
 </div>
 <div class="menu">
   <app-daily-menu
@@ -8,16 +8,6 @@
     [weekday]="item.day"
     [lunch]="item.lunch?.name"
     [dinner]="item.dinner?.name"
-    (lunchClick)="onLunchClicked(item)" 
-    (dinnerClick)="onDinnerClicked(item)">
-  </app-daily-menu>
-</div>
-<div *ngIf="showSelectRecipeModal">
-  <app-select-recipe-modal
-    [recipeName]="selectedMeal == 0 ? selectedWeekday.lunch?.name : selectedWeekday.dinner?.name"
-    (selected)="onSelectRecipeModalSelected($event)"
-    (cancel)="onSelectRecipeModalCancel()"
-    (clear)="onSelectRecipeModalClear()"
-  ></app-select-recipe-modal>
+  ></app-daily-menu>
 </div>
 

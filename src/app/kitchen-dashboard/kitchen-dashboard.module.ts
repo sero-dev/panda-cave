@@ -7,7 +7,6 @@ import { ShoppingCartComponent } from './features/shopping-cart/shopping-cart.co
 import { WeeklyMenuComponent } from './features/weekly-menu/weekly-menu.component';
 import { RecipesComponent } from './features/recipes/recipes.component';
 import { DailyMenuComponent } from './features/weekly-menu/daily-menu/daily-menu.component';
-import { SelectRecipeModalComponent } from './features/weekly-menu/select-recipe-modal/select-recipe-modal.component';
 import { IngredientsComponent } from './features/ingredients/ingredients.component';
 import { AddRecipeToolbarComponent } from './features/recipes/add-recipe-toolbar/add-recipe-toolbar.component';
 import { SearchRecipeToolbarComponent } from './features/recipes/search-recipe-toolbar/search-recipe-toolbar.component';
@@ -24,7 +23,6 @@ import { SearchIngredientToolbarComponent } from './features/ingredients/search-
     ShoppingCartComponent,
     WeeklyMenuComponent,
     DailyMenuComponent,
-    SelectRecipeModalComponent,
     IngredientsComponent,
     AddRecipeToolbarComponent,
     SearchRecipeToolbarComponent,

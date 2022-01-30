@@ -10,8 +10,6 @@ export class DailyMenuComponent implements OnInit {
   @Input() weekday: string
   @Input() lunch: string | undefined
   @Input() dinner: string | undefined
-  @Output('lunchClick') onLunchClicked = new EventEmitter<void>()
-  @Output('dinnerClick') onDinnerClicked = new EventEmitter<void>()
 
   constructor() { }
 

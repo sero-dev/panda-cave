@@ -11,68 +11,26 @@ import { WeeklyMenuService } from '../../services/weekly-menu.service';
 export class WeeklyMenuComponent implements OnInit {
 
   weeklyMenu: WeeklyMenuItem[];
-  selectedWeekday: WeeklyMenuItem;
-  selectedMeal: MealType;
-
-  showSelectRecipeModal = false;
 
   constructor(private weeklyMenuService: WeeklyMenuService) { }
 
   ngOnInit(): void {
+    this.getWeeklyMenu();
+  }
+
+  getWeeklyMenu(): void {
     this.weeklyMenuService.getWeeklyMenu().subscribe(
       response => this.weeklyMenu = response
-    )
-  }
-
-  onSelectRecipeModalSelected(recipe: Recipe) {
-    this.showSelectRecipeModal = false;
-    switch (this.selectedMeal) {
-      case MealType.Lunch:
-        this.selectedWeekday.lunch = recipe;
-        break;
-      case MealType.Dinner:
-        this.selectedWeekday.dinner = recipe;
-        break;
-      default:
-        console.error('Meal Type was not selected');
-    }
-
-    this.weeklyMenuService.updateWeeklyMenu(this.weeklyMenu).subscribe(
-      response => console.log(response)
     );
   }
 
-  onSelectRecipeModalCancel() {
-    this.showSelectRecipeModal = false;
-  }
+  clearWeeklyMenu(): void {
+    this.weeklyMenu.forEach(wmi => {
+      wmi.lunch = null;
+      wmi.dinner = null;
+    });
 
-  onSelectRecipeModalClear() {
-    this.showSelectRecipeModal = false;
-    switch (this.selectedMeal) {
-      case MealType.Lunch:
-        this.selectedWeekday.lunch = null;
-        break;
-      case MealType.Dinner:
-        this.selectedWeekday.dinner = null;
-        break;
-      default:
-        console.error('Meal Type was not selected');
-    }
-
-    this.weeklyMenuService.updateWeeklyMenu(this.weeklyMenu).subscribe(
-      response => console.log(response)
-    );
-  }
-
-  onLunchClicked(menuItem: WeeklyMenuItem) {
-    this.selectedMeal = MealType.Lunch;
-    this.selectedWeekday = menuItem;
-    this.showSelectRecipeModal = true;
-  }
-
-  onDinnerClicked(menuItem: WeeklyMenuItem) {
-    this.selectedMeal = MealType.Dinner;
-    this.selectedWeekday = menuItem;
-    this.showSelectRecipeModal = true;
+    this.weeklyMenuService.updateWeeklyMenu(this.weeklyMenu)
+      .subscribe(_ => this.getWeeklyMenu());
   }
 }

@@ -10,7 +10,6 @@
       <input 
         class="daily-meal-input" 
         type="text"
-        (click)="onLunchClicked.emit()"
         name="lunch" 
         readonly 
         [(ngModel)]="lunch"
@@ -24,7 +23,6 @@
         </svg>
       </label>
       <input
-        (click)="onDinnerClicked.emit()"
         class="daily-meal-input" 
         type="text" 
         name="dinner" 

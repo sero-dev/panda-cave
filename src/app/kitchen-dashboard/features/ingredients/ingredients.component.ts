@@ -60,4 +60,9 @@ export class IngredientsComponent implements OnInit {
         .subscribe(ingredients => this.ingredients = ingredients);
     }
   }
+
+  deleteIngredient(ingredientId: number) {
+    this.ingredientService.deleteIngredient(ingredientId)
+      .subscribe(_ => this.getIngredients());
+  }
 }

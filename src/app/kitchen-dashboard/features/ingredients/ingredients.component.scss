@@ -4,14 +4,21 @@
   @apply
     p-4
     bg-gray-700
-    hover:bg-gray-500
-    active:bg-gray-400
     rounded-md
     transition-all
     hover:ease-in
-    hover:cursor-pointer
     select-none
+    flex
+    justify-between
   ;
+
+  &:hover {
+    .delete-btn {
+      @apply
+        opacity-100
+      ;
+    }
+  }
 }
 
 .ingredient-list {
@@ -80,3 +87,12 @@
     ;
   }
 }
+
+.delete-btn {
+    @apply 
+      text-red-500
+      ease-out 
+      opacity-0 
+      transition-all 
+    ;
+  }

@@ -1,5 +1,18 @@
-<div class="text-center">
-  <h1 class="mb-2">Undergo Construction</h1>
-  <p>Check back later to see content!</p>
+<div>
+  <h1>Needed</h1>
+  <ul>
+    <li *ngFor="let item of neededIngredients">
+      {{item.amount}} {{item.unitOfMeasure}} {{item.ingredient}}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h1>Inventory</h1>
+  <ul>
+    <li *ngFor="let item of inventoryIngredients">
+      {{item.amount}} {{item.unitOfMeasure}} {{item.ingredient}}
+    </li>
+  </ul>
 </div>
 
