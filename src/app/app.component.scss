@@ -33,8 +33,7 @@
 
 .nav-list {
   @apply
-    hidden
-    sm:flex
+    flex
     space-x-2
   ;
 }
