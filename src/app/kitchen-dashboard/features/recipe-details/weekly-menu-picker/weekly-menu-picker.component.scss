@@ -21,6 +21,18 @@
       justify-center
     ;
   }
+
+  &:last-child {
+    span {
+      &:first-child {
+        @apply rounded-bl-md;
+      }
+
+      &:last-child {
+        @apply rounded-br-md;
+      }
+    }
+  }
 }
 
 .table-header {
@@ -35,5 +47,11 @@
     @apply
       py-3
     ;
+  }
+}
+
+.mobile-only {
+  .table-row {
+    @apply grid-cols-3;
   }
 }
