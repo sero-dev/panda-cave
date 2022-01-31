@@ -23,8 +23,8 @@ html, body {
   overflow-x: hidden;
 
   @apply
-    min-h-screen
-    max-h-screen
+    min-h-full
+    max-h-full
     min-w-full
     max-w-full
   ;
