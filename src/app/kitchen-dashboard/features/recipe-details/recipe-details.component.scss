@@ -82,7 +82,7 @@
 
   scrollbar-width: none;
   -ms-overflow-style: none;
-  max-height: calc(100vh - 212px);
+  max-height: calc(100vh - 294px);
   &::-webkit-scrollbar {
     display: none;
   }
@@ -98,6 +98,15 @@
   .detail-container {
     max-height: calc(100vh - 265px);
   }
+}
+
+.action-bar {
+  @apply
+    sm:hidden
+    flex
+    justify-evenly
+    py-5
+  ;
 }
 
 
