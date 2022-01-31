@@ -8,7 +8,7 @@ import { KitchenDashboardModule } from './kitchen-dashboard/kitchen-dashboard.mo
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
