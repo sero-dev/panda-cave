@@ -22,12 +22,12 @@
     lg:grid-cols-3
     xl:grid-cols-4
     gap-4
-    mb-4
+    pb-4
   ;
 
   scrollbar-width: none;
   -ms-overflow-style: none;
-  max-height: calc(100vh - 256px);
+  max-height: calc(100vh - 190px);
 
   &::-webkit-scrollbar {
     display: none;
@@ -36,7 +36,13 @@
 
 @media (min-width: 768px) {
   .recipe-list {
-    max-height: calc(100vh - 280px);
+    max-height: calc(100vh - 262px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .recipe-list {
+    max-height: calc(100vh - 194px);
   }
 }
 
