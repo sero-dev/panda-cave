@@ -46,15 +46,47 @@
 
 .mobile-nav {
   @apply
-    fixed 
-    top-0 
-    left-0 
-    w-full 
-    bg-gray-900
-    bg-opacity-60 
+    absolute
+    top-0
+    p-2
+    mb-6
+    w-72
+    h-screen
+    bg-gray-800
+    drop-shadow-lg
+    border-gray-600
+    border-r-2
     backdrop-filter 
-    backdrop-blur-lg
+    backdrop-blur-3xl
+    transition-all
+    ease-in
+    duration-200
   ;
+
+  .nav-list {
+    @apply
+      flex-col
+      text-xl
+      space-y-2
+      items-stretch
+      w-full
+    ;
+
+    .nav-link {
+      @apply
+        block
+        rounded-md
+        p-2
+      ;
+    }
+
+    .active {
+      @apply
+        bg-purple-600
+        text-white
+      ;
+    }
+  }
 }
 
 .main {

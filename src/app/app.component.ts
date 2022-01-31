@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+  showMobileNav: boolean = false;
+
+  openMobileNav(): void {
+    this.showMobileNav = true;
+  }
+
+  closeMobileNav(): void {
+    this.showMobileNav = false;
+  }
 }
