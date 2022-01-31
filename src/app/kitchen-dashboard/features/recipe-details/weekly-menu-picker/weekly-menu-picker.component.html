@@ -1,21 +1,43 @@
-<h2>Add to Weekly Menu</h2>
-<section class="weekly-menu">
-  <header class="table-header">
-    <span></span>
-    <span *ngFor="let item of weeklyMenu">{{item.day}}</span>
-  </header>
-  <section class="table-row">
-    <span class="bg-gray-900">Lunch</span>
-    <span class="bg-gray-800" *ngFor="let item of weeklyMenu">
-      <span *ngIf="item.lunch">{{item.lunch?.name}}</span>
-      <button (click)="addToLunch.emit(item)" class="btn-green-outline" *ngIf="!item.lunch">Add</button>
-    </span>
+<div class="desktop-only">
+  <section class="weekly-menu">
+    <header class="table-header">
+      <span>Weekly Menu</span>
+      <span *ngFor="let item of weeklyMenu">{{item.day}}</span>
+    </header>
+    <section class="table-row">
+      <span class="bg-gray-900">Lunch</span>
+      <span class="bg-gray-800" *ngFor="let item of weeklyMenu">
+        <span *ngIf="item.lunch">{{item.lunch?.name}}</span>
+        <button (click)="addToLunch.emit(item)" class="btn-green-outline" *ngIf="!item.lunch">Add</button>
+      </span>
+    </section>
+    <section class="table-row">
+      <span class="bg-gray-900">Dinner</span>
+      <span class="bg-gray-800" *ngFor="let item of weeklyMenu">
+        <span *ngIf="item.dinner">{{item.dinner?.name}}</span>
+        <button (click)="addToDinner.emit(item)" class="btn-green-outline" *ngIf="!item.dinner">Add</button>
+      </span>
+    </section>
   </section>
-  <section class="table-row">
-    <span class="bg-gray-900 rounded-bl-md">Dinner</span>
-    <span class="bg-gray-800" *ngFor="let item of weeklyMenu">
-      <span *ngIf="item.dinner">{{item.dinner?.name}}</span>
-      <button (click)="addToDinner.emit(item)" class="btn-green-outline" *ngIf="!item.dinner">Add</button>
-    </span>
+</div>
+
+<div class="mobile-only">
+  <section class="weekly-menu">
+    <header class="table-header">
+      <span>Weekly Menu</span>
+      <span>Lunch</span>
+      <span>Dinner</span>
+    </header>
+    <section *ngFor="let item of weeklyMenu" class="table-row">
+      <span class="bg-gray-900">{{item.day}}</span>
+      <span class="bg-gray-800">
+        <span *ngIf="item.lunch">{{item.lunch?.name}}</span>
+        <button (click)="addToLunch.emit(item)" class="btn-green-outline" *ngIf="!item.lunch">Add</button>
+      </span>
+      <span class="bg-gray-800">
+        <span *ngIf="item.dinner">{{item.dinner?.name}}</span>
+        <button (click)="addToDinner.emit(item)" class="btn-green-outline" *ngIf="!item.dinner">Add</button>
+      </span>
+    </section>
   </section>
-</section>
+</div>
