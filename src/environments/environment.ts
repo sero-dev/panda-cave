@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  recipeBookEndpoint: 'https://192.168.1.20:5001/api'
+  recipeBookEndpoint: 'http://localhost:8080/api/recipe-book'
 };

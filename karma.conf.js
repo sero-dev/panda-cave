@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/home-automation'),
+      dir: require('path').join(__dirname, './coverage/panda-cave'),
       subdir: '.',
       reporters: [
         { type: 'html' },
