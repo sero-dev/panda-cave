@@ -8,17 +8,13 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '16'
 
       - name: Cache node modules
         id: cache-nodemodules
@@ -39,7 +35,7 @@ jobs:
           npm ci
       - name: Build
         run: |
-          npm run build
+          npm run build --base-href 'https://serodev.com/home-automation/'
       - name: Deploy
         run: |
-          npm run deploy
+          npx angular-cli-ghpages --dir=dist/home-automation
