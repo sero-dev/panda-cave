@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  recipeBookEndpoint: 'https://titan:5001/api'
+  recipeBookEndpoint: 'http://api.serodev.com/api/recipe-book/recipe'
 };
