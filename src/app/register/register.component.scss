@@ -1,0 +1,52 @@
+.container {
+  @apply 
+    mx-auto 
+  ;
+}
+
+.inner-container {
+  @apply
+    max-w-2xl
+  ;
+}
+
+.header {
+  @apply
+    mb-3
+  ;
+}
+
+.register {
+  @apply
+    mb-9
+  ;
+}
+
+.link {
+  @apply
+    text-blue-500
+    font-semibold
+    hover:text-blue-400
+  ;
+}
+
+.form {
+  @apply 
+    grid 
+    grid-cols-12 
+    gap-4
+    mb-6
+  ;
+
+  input {
+    @apply 
+      bg-gray-700 
+      outline-none 
+      border-none 
+      rounded-md 
+      py-3
+      focus:ring-2
+    ;
+  }
+}
+
