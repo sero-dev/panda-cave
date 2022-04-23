@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { WeeklyMenuItem } from 'src/app/kitchen-dashboard/models/weekly-menu.model';
+import { WeeklyMenuItem } from '../../..//models/weekly-menu.model';
 
 @Component({
   selector: 'app-weekly-menu-picker',

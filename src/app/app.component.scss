@@ -61,6 +61,16 @@
     duration-200
   ;
 
+  .close-button {
+    @apply 
+      flex
+      justify-end
+      mt-2
+      mb-5
+      px-3
+    ;
+  }
+
   .nav-list {
     @apply
       flex-col

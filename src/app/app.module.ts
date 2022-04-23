@@ -4,10 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { KitchenDashboardModule } from './kitchen-dashboard/kitchen-dashboard.module';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { KitchenModule } from './pages/kitchen/kitchen.module';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    KitchenDashboardModule
+    KitchenModule
   ],
   providers: [],
   bootstrap: [AppComponent]

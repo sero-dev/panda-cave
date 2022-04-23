@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Ingredient } from 'src/app/kitchen-dashboard/models/ingredient.model';
-import { RecipeIngredient } from 'src/app/kitchen-dashboard/models/recipe-details.model';
-import { IngredientService } from 'src/app/kitchen-dashboard/services/ingredient.service';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Ingredient } from '../../../models/ingredient.model';
+import { RecipeIngredient } from '../../../models/recipe-details.model';
+import { IngredientService } from '../../../services/ingredient.service';
 
 @Component({
   selector: 'app-ingredient-selector',

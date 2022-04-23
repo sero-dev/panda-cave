@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeDetails, RecipeIngredient } from 'src/app/kitchen-dashboard/models/recipe-details.model';
-import { RecipeService } from 'src/app/kitchen-dashboard/services/recipe.service';
+import { RecipeDetails, RecipeIngredient } from '../../models/recipe-details.model';
+import { RecipeService } from '../../services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeeklyMenuService } from '../../services/weekly-menu.service';
 import { MealType, WeeklyMenuItem } from '../../models/weekly-menu.model';
