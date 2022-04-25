@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 @import './button.scss';
 @import './toolbar.scss';
+@import './form.scss';
 
 body:before {
   @apply bg-gray-800;

@@ -43,13 +43,14 @@
           <a class="logo-name" routerLink="/">Panda Cave</a>
         </div>
 
-        <div class="mobile-only"> </div>
+        <div class="mobile-only"></div>
         
         <nav class="desktop-only">
           <ul class="nav-list">
             <li><a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-            <li><a class="nav-link" routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Sign In</a></li>
-            <!-- <li><a class="nav-link" routerLink="kitchen" routerLinkActive="active">Kitchen</a></li> -->
+            <li *ngIf="!authService.isAuthenticated()"><a class="nav-link" routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Log In</a></li>
+            <li *ngIf="!authService.isAuthenticated()"><a class="nav-link btn-purple" routerLink="register" routerLinkActive="active-btn" [routerLinkActiveOptions]="{ exact: true }">Sign Up</a></li>
+            <li *ngIf="authService.isAuthenticated()"><a class="nav-link" routerLink="kitchen" routerLinkActive="active">Kitchen</a></li>
           </ul>
         </nav>
       </div>

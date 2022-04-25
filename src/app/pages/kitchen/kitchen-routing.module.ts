@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
@@ -9,7 +10,7 @@ import { KitchenComponent } from './kitchen.component';
 
 const routes: Routes = [
   {
-    path: 'kitchen', component: KitchenComponent, children: [
+    path: 'kitchen', canActivate: [AuthGuard], component: KitchenComponent, children: [
       { path: 'recipe', component: RecipesComponent },
       { path: 'recipe/:id/edit', component: RecipeDetailsComponent},
       { path: 'shopping-cart', component: ShoppingCartComponent },

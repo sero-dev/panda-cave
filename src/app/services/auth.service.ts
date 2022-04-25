@@ -1,30 +1,76 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ActionResult } from '../models/action-result';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private authUrl = `${environment.authEndpoint}`;
-  private user = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getUser() {
-    return { ...this.user }
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('accessToken');
+
+    if (!token) return false;
+
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) < expiry;
   }
 
-  register(email: string, password: string): Observable<void> {
-    return this.http.post<void>(this.authUrl + '/register', { email, password })
+  register(email: string, password: string): Observable<ActionResult> {
+    const url = this.authUrl + '/register';
+    return this.http.post(url, { email, password }, { responseType: 'text' })
+      .pipe(
+        map(() => {
+          return {
+            level: 'success',
+            message: 'Account Created'
+          } as ActionResult;
+        }),
+        catchError((error, caught) => {
+          console.log(error);
+          return throwError(new Error(error));
+        })
+      );
   }
 
-  login(email: string, password: string): Observable<string> {
-    return this.http.post<string>(this.authUrl + '/login', { email, password });
+  login(email: string, password: string): Observable<ActionResult> {
+    return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
+      .pipe(
+        tap(token => localStorage.setItem('accessToken', token)),
+        map(() => {
+          return {
+            level: 'success',
+            message: 'Login Successful'
+          } as ActionResult;
+        }),
+        catchError((error, caught) => {
+          console.log(error);
+          return throwError(new Error(error));
+        })
+      )
   }
 
-  refresh(): Observable<void> {
-    return this.http.get<void>(this.authUrl + '/refresh');
+  logout(): Observable<void> {
+    localStorage.removeItem('accessToken');
+    return this.http.post<void>(this.authUrl + '/logout', {})
+      .pipe(
+        catchError((error, caught) => {
+          console.log(error);
+          return throwError(new Error(error));
+        })
+      );
+  }
+
+  refresh(): boolean {
+    this.http.get<string>(this.authUrl + '/refresh')
+      .subscribe(response => localStorage.setItem('accessToken', response));
+    
+    return true;
   }
 }

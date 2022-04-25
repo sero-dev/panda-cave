@@ -2,7 +2,6 @@
   @apply
     flex 
     flex-col 
-    justify-between 
     min-h-screen
     max-h-screen
     min-w-full
@@ -14,6 +13,12 @@
   @apply
     font-semibold
     pb-1
+  ;
+}
+
+.active-btn {
+  @apply
+    font-semibold
   ;
 }
 
@@ -34,7 +39,7 @@
 .nav-list {
   @apply
     flex
-    space-x-2
+    space-x-3
   ;
 }
 
@@ -78,6 +83,7 @@
       space-y-2
       items-stretch
       w-full
+      space-x-0
     ;
 
     .nav-link {
@@ -100,11 +106,14 @@
 .main {
   @apply
     flex-grow 
+    grid
+    grid-cols-1
     pt-4 
     px-2 
     text-white
     md:pt-8
   ;
+  grid-template-rows: 0 auto;
 }
 
 .footer {
