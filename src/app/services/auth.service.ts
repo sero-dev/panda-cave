@@ -13,6 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+
   isAuthenticated(): boolean {
     const token = localStorage.getItem('accessToken');
 
@@ -21,6 +22,11 @@ export class AuthService {
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     return (Math.floor((new Date).getTime() / 1000)) < expiry;
   }
+
+  getToken(): string | null {
+    return localStorage.getItem('accessToken');
+  }
+
 
   register(email: string, password: string): Observable<ActionResult> {
     const url = this.authUrl + '/register';
@@ -39,6 +45,7 @@ export class AuthService {
       );
   }
 
+
   login(email: string, password: string): Observable<ActionResult> {
     return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
       .pipe(
@@ -56,9 +63,10 @@ export class AuthService {
       )
   }
 
+
   logout(): Observable<void> {
     localStorage.removeItem('accessToken');
-    return this.http.post<void>(this.authUrl + '/logout', {})
+    return this.http.get<void>(this.authUrl + '/logout')
       .pipe(
         catchError((error, caught) => {
           console.log(error);
@@ -66,6 +74,7 @@ export class AuthService {
         })
       );
   }
+
 
   refresh(): boolean {
     this.http.get<string>(this.authUrl + '/refresh')
