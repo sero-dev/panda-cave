@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthGuard } from './guards/auth.guard';
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
   
   ngOnInit() {
@@ -25,5 +26,13 @@ export class AppComponent implements OnInit {
 
   closeMobileNav(): void {
     this.showMobileNav = false;
+  }
+
+  logout() {
+    this.authService.logout()
+      .subscribe(() => {
+        this.showMobileNav = false;
+        this.router.navigate(['']);
+      });
   }
 }
