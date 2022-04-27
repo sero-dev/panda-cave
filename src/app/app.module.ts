@@ -6,16 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KitchenModule } from './pages/kitchen/kitchen.module';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogInComponent } from './pages/log-in/log-in.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent
+    LogInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
