@@ -15,6 +15,8 @@ import { IngredientSelectorComponent } from './components/recipe-details/ingredi
 import { WeeklyMenuPickerComponent } from './components/recipe-details/weekly-menu-picker/weekly-menu-picker.component';
 import { AddIngredientToolbarComponent } from './components/ingredients/add-ingredient-toolbar/add-ingredient-toolbar.component';
 import { SearchIngredientToolbarComponent } from './components/ingredients/search-ingredient-toolbar/search-ingredient-toolbar.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,13 @@ import { SearchIngredientToolbarComponent } from './components/ingredients/searc
     CommonModule,
     FormsModule,
     KitchenRoutingModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class KitchenModule { }
