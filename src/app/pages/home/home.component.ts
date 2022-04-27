@@ -16,14 +16,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated()
-  }
-
-  logoutClicked() {
-    this.authService.logout()
-      .subscribe(() => {
-        this.isAuthenticated = this.authService.isAuthenticated()
-        this.router.navigate(['/']);
-      });
+    this.router.navigate(['/login'])
   }
 }
