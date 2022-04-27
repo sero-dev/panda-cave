@@ -1,17 +1,25 @@
 <div class="container">
   <div class="form-box">
-    <h1 class="header">Log in to Panda Cave</h1>
+    <h1 class="header">Log in</h1>
     <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
       <div class="col-span-12 form-element">
         <label class="form-label" for="email">Email</label>
-        <input formControlName="email" class="form-input" type="email" placeholder="bigpanda@serodev.com">
+        <input 
+          formControlName="email" 
+          class="form-input" 
+          type="email" 
+          placeholder="bigpanda@serodev.com">
       </div>
       <div class="col-span-12 form-element">
         <label class="form-label" for="password">Password</label>
-        <input formControlName="password" class="form-input" type="password" placeholder="************">
+        <input 
+          formControlName="password" 
+          class="form-input" 
+          type="password" 
+          placeholder="************">
       </div>
 
-      <div class="login">New to Panda Cave? <a class="link" routerLink="/register">Sign Up</a></div>
+      <div class="login">New to Panda Cave? <a class="link" routerLink="/signup">Sign Up</a></div>
       <div class="form-control">
         <button type="submit" class="form-submit">Log in</button>
       </div>

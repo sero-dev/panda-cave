@@ -4,19 +4,18 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class SignUpComponent implements OnInit {
 
   form = this.fb.group({
     "firstName": ["", Validators.required],
     "lastName": ["", Validators.required],
-    "email": ["", Validators.required],
+    "email": ["", [Validators.required, Validators.email]],
     "password": ["", Validators.required],
     "repeatPassword": ["", Validators.required],
-
   });
 
   constructor(
@@ -26,6 +25,9 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/kitchen']);
+    }
   }
   
   onSubmit() {
