@@ -5,23 +5,23 @@
     <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
       <div class="form-element col-span-6">
         <label class="form-label" for="first_name">First Name</label>
-        <input class="form-input" formControlName="firstName" type="text" placeholder="Jane">
+        <input class="form-input" formControlName="firstName" type="text">
       </div>
       <div class="form-element col-span-6">
         <label class="form-label" for="last_name">Last Name</label>
-        <input class="form-input" formControlName="lastName" type="text" placeholder="Smith">
+        <input class="form-input" formControlName="lastName" type="text">
       </div>
       <div class="form-element col-span-12">
         <label class="form-label" for="email">Email</label>
-        <input class="form-input" formControlName="email" type="email" placeholder="bigpanda@serodev.com">
+        <input class="form-input" formControlName="email" type="email">
       </div>
       <div class="form-element col-span-12">
         <label class="form-label" for="password">Password</label>
-        <input class="form-input" formControlName="password" type="password" placeholder="************">
+        <input class="form-input" formControlName="password" type="password">
       </div>
       <div class="form-element col-span-12">
         <label class="form-label" for="repeatPassword">Repeat Password</label>
-        <input class="form-input" formControlName="repeatPassword" type="password" placeholder="************">
+        <input class="form-input" formControlName="repeatPassword" type="password">
       </div>
       <div class="form-control">
         <button type="submit" [disabled]="!form.valid" class="form-submit">Sign Up</button>

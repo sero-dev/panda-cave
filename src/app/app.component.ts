@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    private alertService: AlertService,
     private router: Router
   ) { }
   
@@ -30,8 +32,10 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout()
-      .subscribe(() => {
+      .subscribe(result => {
         this.showMobileNav = false;
+        result.length = 4000;
+        this.alertService.sendMessage(result)
         this.router.navigate(['']);
       });
   }

@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ActionResult } from '../models/action-result';
+import { AlertMessage } from '../models/alert-message';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ import { ActionResult } from '../models/action-result';
 export class AuthService {
   private authUrl = `${environment.authEndpoint}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private alertService: AlertService
+  ) { }
 
 
   isAuthenticated(): boolean {
@@ -28,7 +32,7 @@ export class AuthService {
   }
 
 
-  register(email: string, password: string): Observable<ActionResult> {
+  register(email: string, password: string): Observable<AlertMessage> {
     const url = this.authUrl + '/register';
     return this.http.post(url, { email, password }, { responseType: 'text' })
       .pipe(
@@ -36,17 +40,17 @@ export class AuthService {
           return {
             level: 'success',
             message: 'Account Created'
-          } as ActionResult;
+          } as AlertMessage;
         }),
-        catchError((error, caught) => {
-          console.log(error);
-          return throwError(new Error(error));
+        catchError((response: HttpErrorResponse) => {
+          this.handleError(response);
+          throw new Error(response.error);
         })
       );
   }
 
 
-  login(email: string, password: string): Observable<ActionResult> {
+  login(email: string, password: string): Observable<AlertMessage> {
     return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
       .pipe(
         tap(token => localStorage.setItem('accessToken', token)),
@@ -54,23 +58,29 @@ export class AuthService {
           return {
             level: 'success',
             message: 'Login Successful'
-          } as ActionResult;
+          } as AlertMessage;
         }),
-        catchError((error, caught) => {
-          console.log(error);
-          return throwError(new Error(error));
+        catchError((response: HttpErrorResponse) => {
+          this.handleError(response);
+          throw new Error(response.error);
         })
       )
   }
 
 
-  logout(): Observable<void> {
+  logout(): Observable<AlertMessage> {
     localStorage.removeItem('accessToken');
     return this.http.get<void>(this.authUrl + '/logout')
       .pipe(
-        catchError((error, caught) => {
-          console.log(error);
-          return throwError(new Error(error));
+        map(() => {
+          return {
+            level: 'success',
+            message: 'Logout Successful'
+          } as AlertMessage;
+        }),
+        catchError((response: HttpErrorResponse) => {
+          this.handleError(response);
+          throw new Error(response.error);
         })
       );
   }
@@ -81,5 +91,13 @@ export class AuthService {
       .subscribe(response => localStorage.setItem('accessToken', response));
     
     return true;
+  }
+
+  private handleError(response: HttpErrorResponse) {
+    this.alertService.sendMessage({
+      message: response.error,
+      level: 'error',
+      length: 4000
+    });
   }
 }

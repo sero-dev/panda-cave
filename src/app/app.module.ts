@@ -9,13 +9,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LogInComponent,
-    SignUpComponent
+    SignUpComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

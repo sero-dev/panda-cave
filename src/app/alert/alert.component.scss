@@ -1,0 +1,31 @@
+.alert {
+  @apply
+    flex
+    justify-center
+    w-full
+    text-center
+    max-w-sm
+    mx-auto
+    rounded
+    p-3
+    relative
+    -top-20
+    transition-all
+    ease-in-out
+    duration-300
+  ;
+}
+
+.alert-message {
+  @apply
+    text-white
+    text-center
+  ;
+}
+
+.alert-hide {
+  @apply
+    opacity-0
+    -top-10
+  ;
+}
