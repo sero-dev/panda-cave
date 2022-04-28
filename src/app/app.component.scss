@@ -1,12 +1,13 @@
 .page {
   @apply
-    flex 
-    flex-col 
+    grid
     min-h-screen
     max-h-screen
     min-w-full
     max-w-full
   ;
+
+  grid-template-rows: auto 1fr auto;
 }
 
 .active {
@@ -106,7 +107,6 @@
 
 .main {
   @apply
-    flex-grow 
     grid
     grid-cols-1
     pt-4 
