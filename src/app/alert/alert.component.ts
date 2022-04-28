@@ -9,8 +9,11 @@ import { AlertService } from '../services/alert.service';
 })
 export class AlertComponent implements OnInit {
 
-  alertMessage: AlertMessage
   showAlert: boolean = false
+  alertMessage: AlertMessage = {
+    message: 'Default Message',
+    level: 'dismiss'
+  }
 
   constructor(private alertService: AlertService) { }
 

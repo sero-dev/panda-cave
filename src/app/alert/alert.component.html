@@ -1,4 +1,4 @@
-<div class="alert" *ngIf="alertMessage" [ngClass]="{
+<div class="alert" [ngClass]="{
   'bg-green-600': alertMessage?.level === 'success', 
   'bg-yellow-600': alertMessage?.level === 'warn',
   'bg-red-600': alertMessage?.level === 'error',
