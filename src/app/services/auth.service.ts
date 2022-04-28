@@ -32,16 +32,20 @@ export class AuthService {
   }
 
 
-  register(email: string, password: string): Observable<AlertMessage> {
+  register(email: string, password: string): Observable<void> {
     const url = this.authUrl + '/register';
     return this.http.post(url, { email, password }, { responseType: 'text' })
       .pipe(
-        map(() => {
-          return {
+        tap(() => {
+          const result = {
             level: 'success',
-            message: 'Account Created'
+            message: 'Account Created',
+            icon: 'add-user',
+            length: 4000
           } as AlertMessage;
+          this.alertService.sendMessage(result);
         }),
+        map(() => {}),
         catchError((response: HttpErrorResponse) => {
           this.handleError(response);
           throw new Error(response.error);
@@ -50,18 +54,21 @@ export class AuthService {
   }
 
 
-  login(email: string, password: string): Observable<AlertMessage> {
+  login(email: string, password: string): Observable<void> {
     this.alertService.sendMessage({message: 'Attempting to login...', level: 'ongoing', icon: 'spinner'})
     return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
       .pipe(
         tap(token => localStorage.setItem('accessToken', token)),
-        map(() => {
-          return {
+        tap(() => {
+          const result = {
             level: 'success',
             message: 'Login Successful',
-            icon: 'lock-open'
+            icon: 'lock-open',
+            length: 4000
           } as AlertMessage;
+          this.alertService.sendMessage(result);
         }),
+        map(() => {}),
         catchError((response: HttpErrorResponse) => {
           this.handleError(response);
           throw new Error(response.error);
@@ -70,17 +77,20 @@ export class AuthService {
   }
 
 
-  logout(): Observable<AlertMessage> {
+  logout(): Observable<void> {
     localStorage.removeItem('accessToken');
     return this.http.get<void>(this.authUrl + '/logout')
       .pipe(
-        map(() => {
-          return {
+        tap(() => {
+          const result = {
             level: 'success',
             message: 'Logout Successful',
-            icon: 'lock-closed'
+            icon: 'lock-closed',
+            length: 4000
           } as AlertMessage;
+          this.alertService.sendMessage(result);
         }),
+        map(() => {}),
         catchError((response: HttpErrorResponse) => {
           this.handleError(response);
           throw new Error(response.error);
@@ -100,11 +110,13 @@ export class AuthService {
     const alertMessage: AlertMessage = {
       message: response.error,
       level: 'error',
+      icon: 'x-circle',
       length: 4000
-    }
+    };
     
     if (response.status === 0) {
-      alertMessage.message = 'Connection to server failed. Try again later'
+      alertMessage.message = 'Connection to server failed. Try again later';
+      alertMessage.icon = 'server';
     }
 
     this.alertService.sendMessage(alertMessage);

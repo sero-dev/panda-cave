@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class LogInComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private alertService: AlertService,
     private router: Router,
   ) { }
 
@@ -32,9 +30,7 @@ export class LogInComponent implements OnInit {
   onSubmit() {
     const { email, password } = this.form.value;
     this.authService.login(email, password)
-      .subscribe(result => {
-        result.length = 4000;
-        this.alertService.sendMessage(result);
+      .subscribe(() => {
         this.router.navigate(['/kitchen']);
       });
   }
