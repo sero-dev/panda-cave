@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserAccount } from 'src/app/models/user-account';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -31,8 +32,8 @@ export class SignUpComponent implements OnInit {
   }
   
   onSubmit() {
-    const { email, password } = this.form.value;
-    this.authService.register(email, password)
+    const userAccount: UserAccount = this.form.value;
+    this.authService.signup(userAccount)
       .subscribe(() => {
         this.router.navigate(['/login']);
       });

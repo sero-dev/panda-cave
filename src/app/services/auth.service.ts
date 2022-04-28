@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AlertMessage } from '../models/alert-message';
+import { UserAccount } from '../models/user-account';
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -32,9 +33,9 @@ export class AuthService {
   }
 
 
-  register(email: string, password: string): Observable<void> {
-    const url = this.authUrl + '/register';
-    return this.http.post(url, { email, password }, { responseType: 'text' })
+  signup(userAccount: UserAccount): Observable<void> {
+    const url = this.authUrl + '/signup';
+    return this.http.post(url, userAccount, { responseType: 'text' })
       .pipe(
         tap(() => {
           const result = {
