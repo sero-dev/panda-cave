@@ -9,6 +9,7 @@ import { AlertService } from '../services/alert.service';
 })
 export class AlertComponent implements OnInit {
 
+  currentTimeout: any
   showAlert: boolean = false
   alertMessage: AlertMessage = {
     message: 'Default Message',
@@ -27,6 +28,8 @@ export class AlertComponent implements OnInit {
   }
 
   showAlertMessage(): void {
+    clearTimeout(this.currentTimeout);
+
     if (this.alertMessage.level === 'dismiss') {
       this.showAlert = false;
       return;
@@ -35,7 +38,7 @@ export class AlertComponent implements OnInit {
     this.showAlert = true;
 
     if (this.alertMessage.length) {
-      setTimeout(() => this.showAlert = false, this.alertMessage.length);
+      this.currentTimeout = setTimeout(() => this.showAlert = false, this.alertMessage.length);
     }
   }
 }

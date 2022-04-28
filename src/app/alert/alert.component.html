@@ -1,8 +1,16 @@
-<div class="alert" [ngClass]="{
-  'bg-green-600': alertMessage?.level === 'success', 
-  'bg-yellow-600': alertMessage?.level === 'warn',
-  'bg-red-600': alertMessage?.level === 'error',
+<div class="alert " [ngClass]="{
+  'bg-green-700': alertMessage.level === 'success', 
+  'bg-yellow-700': alertMessage.level === 'warn',
+  'bg-red-700': alertMessage.level === 'error',
+  'bg-purple-700': alertMessage.level === 'ongoing',
   'alert-hide': !showAlert
 }">
-  <p class="alert-message">{{alertMessage?.message}}</p>
+  <img 
+    *ngIf="alertMessage.icon" 
+    src="../assets/icons/{{alertMessage.icon}}.svg" 
+    role="status" 
+    class="w-6 h-6 mr-4 text-gray-200 dark:text-gray-600"
+    [ngClass]="{'animate-spin': alertMessage.icon === 'spinner'}">
+  <p class="alert-message">{{alertMessage.message}}</p>
 </div>
+

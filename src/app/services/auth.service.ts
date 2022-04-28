@@ -51,13 +51,15 @@ export class AuthService {
 
 
   login(email: string, password: string): Observable<AlertMessage> {
+    this.alertService.sendMessage({message: 'Attempting to login...', level: 'ongoing', icon: 'spinner'})
     return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
       .pipe(
         tap(token => localStorage.setItem('accessToken', token)),
         map(() => {
           return {
             level: 'success',
-            message: 'Login Successful'
+            message: 'Login Successful',
+            icon: 'lock-open'
           } as AlertMessage;
         }),
         catchError((response: HttpErrorResponse) => {
@@ -75,7 +77,8 @@ export class AuthService {
         map(() => {
           return {
             level: 'success',
-            message: 'Logout Successful'
+            message: 'Logout Successful',
+            icon: 'lock-closed'
           } as AlertMessage;
         }),
         catchError((response: HttpErrorResponse) => {
@@ -94,10 +97,16 @@ export class AuthService {
   }
 
   private handleError(response: HttpErrorResponse) {
-    this.alertService.sendMessage({
+    const alertMessage: AlertMessage = {
       message: response.error,
       level: 'error',
       length: 4000
-    });
+    }
+    
+    if (response.status === 0) {
+      alertMessage.message = 'Connection to server failed. Try again later'
+    }
+
+    this.alertService.sendMessage(alertMessage);
   }
 }
