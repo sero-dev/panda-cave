@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AlertMessage } from '../models/alert-message';
 import { UserAccount } from '../models/user-account';
@@ -32,6 +32,10 @@ export class AuthService {
     return localStorage.getItem('accessToken');
   }
 
+  setToken(token: string) {
+    return localStorage.setItem('accessToken', token);
+  }
+
 
   signup(userAccount: UserAccount): Observable<void> {
     const url = this.authUrl + '/signup';
@@ -46,11 +50,7 @@ export class AuthService {
           } as AlertMessage;
           this.alertService.sendMessage(result);
         }),
-        map(() => {}),
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
-        })
+        map(() => {})
       );
   }
 
@@ -59,7 +59,6 @@ export class AuthService {
     this.alertService.sendMessage({message: 'Attempting to login...', level: 'ongoing', icon: 'spinner'})
     return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
       .pipe(
-        tap(token => localStorage.setItem('accessToken', token)),
         tap(() => {
           const result = {
             level: 'success',
@@ -69,11 +68,7 @@ export class AuthService {
           } as AlertMessage;
           this.alertService.sendMessage(result);
         }),
-        map(() => {}),
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
-        })
+        map(() => {})
       )
   }
 
@@ -92,34 +87,13 @@ export class AuthService {
           this.alertService.sendMessage(result);
         }),
         map(() => {}),
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
-        })
       );
   }
-
 
   refresh(): boolean {
     this.http.get<string>(this.authUrl + '/refresh')
       .subscribe(response => localStorage.setItem('accessToken', response));
     
     return true;
-  }
-
-  private handleError(response: HttpErrorResponse) {
-    const alertMessage: AlertMessage = {
-      message: response.error,
-      level: 'error',
-      icon: 'x-circle',
-      length: 4000
-    };
-    
-    if (response.status === 0) {
-      alertMessage.message = 'Connection to server failed. Try again later';
-      alertMessage.icon = 'server';
-    }
-
-    this.alertService.sendMessage(alertMessage);
   }
 }

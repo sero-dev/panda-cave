@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { AlertMessage } from 'src/app/models/alert-message';
 import { AlertService } from 'src/app/services/alert.service';
 import { environment } from 'src/environments/environment';
@@ -21,24 +21,12 @@ export class RecipeService {
   ) { }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesUrl)
-      .pipe(
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
-        })
-      );
+    return this.http.get<Recipe[]>(this.recipesUrl);
     
   }
 
   getRecipesDetails(recipeId: number): Observable<RecipeDetails> {
-    return this.http.get<RecipeDetails>(`${this.recipesUrl}/${recipeId}`)
-      .pipe(
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
-        })
-      );
+    return this.http.get<RecipeDetails>(`${this.recipesUrl}/${recipeId}`);
   }
 
   addRecipe(recipeName: string): Observable<void> {
@@ -52,22 +40,12 @@ export class RecipeService {
             length: 4000
           } as AlertMessage;
           this.alertService.sendMessage(result);
-        }),
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
         })
       );
   }
 
   searchRecipes(searchText: string): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.recipesUrl}/search?name=${searchText}`)
-      .pipe(
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
-        })
-      );
+    return this.http.get<Recipe[]>(`${this.recipesUrl}/search?name=${searchText}`);
   }
 
   deleteRecipe(recipeId: number): Observable<void> {
@@ -81,10 +59,6 @@ export class RecipeService {
             length: 4000
           } as AlertMessage;
           this.alertService.sendMessage(result);
-        }),
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
         })
       );
   }
@@ -100,27 +74,7 @@ export class RecipeService {
             length: 4000
           } as AlertMessage;
           this.alertService.sendMessage(result);
-        }),
-        catchError((response: HttpErrorResponse) => {
-          this.handleError(response);
-          throw new Error(response.error);
         })
       );
-  }
-
-  private handleError(response: HttpErrorResponse) {
-    const alertMessage: AlertMessage = {
-      message: response.error,
-      level: 'error',
-      icon: 'x-circle',
-      length: 4000
-    }
-
-    if (response.status === 0) {
-      alertMessage.message = 'Connection to server failed. Try again later';
-      alertMessage.icon = 'server';
-    }
-
-    this.alertService.sendMessage(alertMessage);
   }
 }
