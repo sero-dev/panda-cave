@@ -7,9 +7,9 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { catchError, filter, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
 import { AlertMessage } from '../models/alert-message';
 
