@@ -46,8 +46,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private handleError(response: HttpErrorResponse) {
+    const errorMessage = JSON.parse(response.error)
     const alertMessage: AlertMessage = {
-      message: response.error,
+      message: errorMessage.message,
       level: 'error',
       icon: 'x-circle',
       length: 4000
