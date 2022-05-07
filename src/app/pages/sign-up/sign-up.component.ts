@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAccount } from 'src/app/models/user-account';
 import { AuthService } from 'src/app/services/auth.service';
+import { repeatPasswordValidator } from 'src/app/validators/repeat-password.validator';
+import { passwordValidator } from 'src/app/validators/password.validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,12 +14,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignUpComponent implements OnInit {
 
   form = this.fb.group({
-    "firstName": ["", Validators.required],
-    "lastName": ["", Validators.required],
+    "firstName": ["", [Validators.required, Validators.maxLength(30)]],
+    "lastName": ["", [Validators.required, Validators.maxLength(30)]],
     "email": ["", [Validators.required, Validators.email]],
-    "password": ["", Validators.required],
+    "password": ["", passwordValidator()],
     "repeatPassword": ["", Validators.required],
-  });
+  }, { validators: [repeatPasswordValidator("password", "repeatPassword")] });
+
+  get getControls() {
+    return this.form.controls;
+  }
 
   constructor(
     private fb: FormBuilder,

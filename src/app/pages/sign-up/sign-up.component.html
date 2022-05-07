@@ -1,31 +1,105 @@
 <div class="container">
-  <div class="form-box">
-    <h1 class="header">Sign Up</h1>
-    <div class="register">Already a Member? <a class="link" routerLink="/login">Log In</a></div>
-    <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
-      <div class="form-element col-span-6">
-        <label class="form-label" for="first_name">First Name</label>
-        <input class="form-input" formControlName="firstName" type="text">
-      </div>
-      <div class="form-element col-span-6">
-        <label class="form-label" for="last_name">Last Name</label>
-        <input class="form-input" formControlName="lastName" type="text">
-      </div>
-      <div class="form-element col-span-12">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-input" formControlName="email" type="email">
-      </div>
-      <div class="form-element col-span-12">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-input" formControlName="password" type="password">
-      </div>
-      <div class="form-element col-span-12">
-        <label class="form-label" for="repeatPassword">Repeat Password</label>
-        <input class="form-input" formControlName="repeatPassword" type="password">
-      </div>
-      <div class="form-control">
-        <button type="submit" [disabled]="!form.valid" class="form-submit">Sign Up</button>
-      </div>
-    </form>
-  </div>
+  <section class="grid-section">
+    <aside class="form-guide">
+      <h2 class="text-2xl text-purple-400 mb-5">Sign Up Guidelines</h2>
+      
+      <article class="guideline-section">
+        <h3 class="font-semibold">First Name</h3>
+        <div [ngClass]="{
+          valid: !getControls.firstName.hasError('required'),
+          error: !getControls.firstName.untouched && getControls.firstName.hasError('required')
+        }" class="guideline">Not empty</div>
+      </article>
+      
+      <article class="guideline-section">
+        <h3 class="font-semibold">Last Name</h3>
+        <div [ngClass]="{
+          valid: !getControls.lastName.hasError('required'),
+          error: !getControls.lastName.untouched && getControls.lastName.hasError('required')
+        }" class="guideline">Not empty</div>
+      </article>
+      
+      <article class="guideline-section">
+        <h3 class="font-semibold">Email Address</h3>
+        <div [ngClass]="{
+          valid: !getControls.email.hasError('required'),
+          error: !getControls.email.untouched && getControls.email.hasError('required')
+        }" class="guideline">Not empty</div>
+        <div [ngClass]="{
+          valid: !getControls.email.hasError('required') && !getControls.email.hasError('email'),
+          error: !getControls.email.untouched && getControls.email.hasError('required') || !getControls.email.hasError('required') && getControls.email.hasError('email')
+        }" class="guideline">Is a valid email address</div>
+      </article>
+      
+      <article class="guideline-section">
+        <h3 class="font-semibold">Password</h3>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('required'),
+          error: !getControls.password.untouched && getControls.password.hasError('required')
+        }" class="guideline">Not empty</div>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('notLong'),
+          error: !getControls.password.untouched && getControls.password.hasError('notLong')
+        }" class="guideline">Minimum 8 characters</div>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('noUpperCase'),
+          error: !getControls.password.untouched && getControls.password.hasError('noUpperCase')
+        }" class="guideline">Has an upper case letter</div>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('noLowerCase'),
+          error: !getControls.password.untouched && getControls.password.hasError('noLowerCase')
+        }" class="guideline">Has an lower case letter</div>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('noNumber'),
+          error: !getControls.password.untouched && getControls.password.hasError('noNumber')
+        }" class="guideline">Has a number</div>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('noSpecialChar'),
+          error: !getControls.password.untouched && getControls.password.hasError('noSpecialChar')
+        }" class="guideline">Has a special character</div>
+      </article>
+      
+      <article class="guideline-section">
+        <h3 class="font-semibold">Repeat Password</h3>
+        <div [ngClass]="{
+          valid: !getControls.repeatPassword.hasError('required'),
+          error: !getControls.repeatPassword.untouched && getControls.repeatPassword.hasError('required')
+        }" class="guideline">Not empty</div>
+        <div [ngClass]="{
+          valid: !form.hasError('noMatch'),
+          error: !getControls.repeatPassword.untouched && form.hasError('noMatch')
+        }" class="guideline">Matches password</div>
+      </article>
+    </aside>
+  
+    <main class="form-box ">
+      <h1 class="header">Sign Up</h1>
+      <article class="register">Already a Member? <a class="link" routerLink="/login">Log In</a></article>
+      <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+        <article class="form-element col-span-6">
+          <label class="form-label" for="first_name">First Name</label>
+          <input [ngClass]="{error: !getControls.firstName.untouched && getControls.firstName.errors}" class="form-input" formControlName="firstName" type="text" maxlength="30">
+        </article>
+        <article class="form-element col-span-6">
+          <label class="form-label" for="last_name">Last Name</label>
+          <input [ngClass]="{error: !getControls.lastName.untouched && getControls.lastName.errors}" class="form-input" class="form-input" formControlName="lastName" type="text" maxlength="30">
+        </article>
+        <article class="form-element col-span-12">
+          <label class="form-label" for="email">Email</label>
+          <input [ngClass]="{error: !getControls.email.untouched && getControls.email.errors}" class="form-input" class="form-input" formControlName="email" type="email">
+        </article>
+        <article class="form-element col-span-12">
+          <label class="form-label" for="password">Password</label>
+          <input [ngClass]="{error: !getControls.password.untouched && getControls.password.errors}" class="form-input" class="form-input" formControlName="password" type="password">
+        </article>
+        <article class="form-element col-span-12">
+          <label class="form-label" for="repeatPassword">Repeat Password</label>
+          <input [ngClass]="{error: !getControls.repeatPassword.untouched && (getControls.repeatPassword.errors || form.hasError('noMatch'))}" class="form-input" class="form-input" formControlName="repeatPassword" type="password">
+        </article>
+        <article class="form-control">
+          <button type="submit" [disabled]="!form.valid" class="form-submit">Sign Up</button>
+        </article>
+      </form>
+    </main>
+  </section>
 </div>

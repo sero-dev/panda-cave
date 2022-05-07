@@ -1,5 +1,6 @@
 .container {
   @apply
+    mt-24
     w-full
     h-full
     flex
@@ -10,13 +11,57 @@
   ;
 }
 
+.grid-section {
+  @apply
+    grid 
+    grid-cols-1 
+    md:grid-cols-7 
+    w-full 
+    gap-12 
+    max-w-4xl 
+    mx-auto
+  ;
+}
+
+.form-guide {
+  @apply
+    bg-gray-900
+    shadow-md 
+    rounded-md
+    md:col-span-3
+    p-8
+  ;
+}
+
+.guideline-section {
+  @apply
+    mb-5
+  ;
+}
+
+.guideline {
+  @apply
+    text-gray-500
+  ;
+}
+
+.guideline.valid {
+  @apply
+    text-green-500
+  ;
+}
+
+.guideline.error {
+  @apply text-red-500;
+}
+
 .form-box {
-  @apply 
+  @apply
+    mt-8
     w-full
-    max-w-xl
-    mt-24
     flex
     flex-col
+    md:col-span-4
   ;
 }
 
