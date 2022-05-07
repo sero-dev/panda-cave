@@ -35,6 +35,13 @@
         focus:ring-2
       ;
     }
+
+    .form-input.error {
+      @apply 
+        ring-2
+        ring-red-500
+      ;
+    }
   }
 
   .form-control {
