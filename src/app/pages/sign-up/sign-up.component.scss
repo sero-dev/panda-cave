@@ -1,6 +1,6 @@
 .container {
   @apply
-    mt-24
+    md:mt-24
     w-full
     h-full
     flex
@@ -30,6 +30,8 @@
     rounded-md
     md:col-span-3
     p-8
+    order-2
+    md:order-1
   ;
 }
 
@@ -62,6 +64,8 @@
     flex
     flex-col
     md:col-span-4
+    order-1
+    md:order-2
   ;
 }
 
