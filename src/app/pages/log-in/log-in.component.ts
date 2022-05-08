@@ -21,6 +21,10 @@ export class LogInComponent implements OnInit {
     private router: Router,
   ) { }
 
+  get getControls() {
+    return this.form.controls;
+  }
+
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/kitchen']);

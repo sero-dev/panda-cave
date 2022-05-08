@@ -4,17 +4,19 @@
     <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
       <div class="col-span-12 form-element">
         <label class="form-label" for="email">Email</label>
-        <input 
+        <input
+          [ngClass]="{error: !getControls.email.untouched && getControls.email.errors}" 
           formControlName="email" 
           class="form-input" 
           type="email">
       </div>
       <div class="col-span-12 form-element">
         <label class="form-label" for="password">Password</label>
-        <input 
+        <input
+          [ngClass]="{error: !getControls.password.untouched && getControls.password.errors}" 
           formControlName="password" 
           class="form-input" 
-          type="password">
+          type="password"> 
       </div>
 
       <div class="login">New to Panda Cave? <a class="link" routerLink="/signup">Sign Up</a></div>
