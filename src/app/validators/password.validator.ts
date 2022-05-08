@@ -12,8 +12,10 @@ export function passwordValidator(): ValidatorFn {
     const hasLowerCase = /[a-z]+/.test(value);
     const hasNumeric = /[0-9]+/.test(value);
     const hasSpecialCharacter = /[@,%,+,!,#,$,^,?,:,(,),{,},\[,\],~,;]+/.test(value);
+    const hasIllegalCharacter = !/^[A-Za-z0-9!@#$%^&(){}\[\]+:;~]+$/.test(value);
 
-    if (notEmpty && hasMininiumCharacter && hasUpperCase && hasLowerCase && hasNumeric && hasSpecialCharacter) {
+    if (notEmpty && hasMininiumCharacter && hasUpperCase &&
+      hasLowerCase && hasNumeric && hasSpecialCharacter && !hasIllegalCharacter) {
       return null;
     }
 
@@ -23,7 +25,8 @@ export function passwordValidator(): ValidatorFn {
       noUpperCase: !hasUpperCase,
       noLowerCase: !hasLowerCase,
       noNumber:!hasNumeric,
-      noSpecialChar: !hasSpecialCharacter
+      noSpecialChar: !hasSpecialCharacter,
+      illegalChar: !notEmpty || (notEmpty && hasIllegalCharacter)
     };
   }
 }

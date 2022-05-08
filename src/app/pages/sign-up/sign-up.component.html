@@ -57,6 +57,10 @@
           valid: !getControls.password.hasError('noSpecialChar'),
           error: !getControls.password.untouched && getControls.password.hasError('noSpecialChar')
         }" class="guideline">Has a special character</div>
+        <div [ngClass]="{
+          valid: !getControls.password.hasError('illegalChar'),
+          error: !getControls.password.untouched && getControls.password.hasError('illegalChar')
+        }" class="guideline">No illegal character</div>
       </article>
       
       <article class="guideline-section">
