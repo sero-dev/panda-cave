@@ -107,15 +107,22 @@
 
 .main {
   @apply
-    grid
-    grid-cols-1
     pt-4 
     px-2 
     text-white
     md:pt-8
+    overflow-y-scroll
   ;
-  grid-template-rows: 0 auto;
+
+  scrollbar-width: thin;
+  -ms-overflow-style: thin;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
+
+
 
 .footer {
   @apply
