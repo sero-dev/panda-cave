@@ -38,6 +38,7 @@ export class AuthService {
 
 
   signup(userAccount: UserAccount): Observable<void> {
+    this.alertService.sendMessage({message: 'Attempting to sign up...', level: 'ongoing', icon: 'spinner'})
     const url = this.authUrl + '/signup';
     return this.http.post(url, userAccount, { responseType: 'text' })
       .pipe(
