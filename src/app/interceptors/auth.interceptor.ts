@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { catchError, tap } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
-import { AlertMessage } from '../models/alert-message';
+import { AlertMessage } from '../models/alert-message.model';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
       setHeaders: {
         'Content-Type': 'application/json; charset=utf-8',
         'Accept': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Authorization': `Bearer ${this.authService.token}`,
       }
     });
 
@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
         tap((event) => {
           if (event instanceof HttpResponse) {
             const token = event.headers.get('Set-Authorization');
-            if(token) this.authService.setToken(token);
+            if(token) this.authService.token = token;
           }
         }),
         catchError((response: HttpErrorResponse) => {

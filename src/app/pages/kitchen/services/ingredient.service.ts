@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
-import { AlertMessage } from 'src/app/models/alert-message';
+import { AlertMessage } from 'src/app/models/alert-message.model';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Injectable({

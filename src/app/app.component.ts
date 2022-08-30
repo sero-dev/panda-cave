@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -9,16 +8,14 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   showMobileNav: boolean = false;
-  isAuthenticated: boolean = false;
 
   constructor(
     public authService: AuthService,
-    private router: Router
   ) { }
   
   ngOnInit() {
     
-  } 
+  }
 
   openMobileNav(): void {
     this.showMobileNav = true;
@@ -32,7 +29,6 @@ export class AppComponent implements OnInit {
     this.authService.logout()
       .subscribe(() => {
         this.showMobileNav = false;
-        this.router.navigate(['']);
       });
   }
 }

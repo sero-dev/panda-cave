@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AlertMessage } from '../models/alert-message';
-import { UserAccount } from '../models/user-account';
+import { AlertMessage } from '../models/alert-message.model';
+import { User } from '../models/user.model';
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -15,29 +16,27 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) { }
 
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('accessToken');
-
-    if (!token) return false;
-
-    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-    return (Math.floor((new Date).getTime() / 1000)) < expiry;
+    return !!this.token; 
   }
 
-  getToken(): string | null {
+
+  public get token(): string | null {
     return localStorage.getItem('accessToken');
   }
 
-  setToken(token: string) {
-    return localStorage.setItem('accessToken', token);
+
+  public set token(token: string | null) {
+    if (token) localStorage.setItem('accessToken', token);
   }
 
 
-  signup(userAccount: UserAccount): Observable<void> {
+  signup(userAccount: User): Observable<string> {
     this.alertService.sendMessage({message: 'Attempting to sign up...', level: 'ongoing', icon: 'spinner'})
     const url = this.authUrl + '/signup';
     return this.http.post(url, userAccount, { responseType: 'text' })
@@ -50,13 +49,13 @@ export class AuthService {
             length: 4000
           } as AlertMessage;
           this.alertService.sendMessage(result);
-        }),
-        map(() => {})
+          this.router.navigate(['/login']);
+        })
       );
   }
 
 
-  login(email: string, password: string): Observable<void> {
+  login(email: string, password: string): Observable<string> {
     this.alertService.sendMessage({message: 'Attempting to login...', level: 'ongoing', icon: 'spinner'})
     return this.http.post(this.authUrl + '/login', { email, password }, { responseType: 'text' })
       .pipe(
@@ -68,12 +67,12 @@ export class AuthService {
             length: 4000
           } as AlertMessage;
           this.alertService.sendMessage(result);
-        }),
-        map(() => {})
-      )
+          this.router.navigate(['/kitchen']);
+        })
+      );
   }
 
-
+  
   logout(): Observable<void> {
     localStorage.removeItem('accessToken');
     return this.http.get<void>(this.authUrl + '/logout')
@@ -86,15 +85,8 @@ export class AuthService {
             length: 4000
           } as AlertMessage;
           this.alertService.sendMessage(result);
-        }),
-        map(() => {}),
+          this.router.navigate(['/login']);
+        })
       );
-  }
-
-  refresh(): boolean {
-    this.http.get<string>(this.authUrl + '/refresh')
-      .subscribe(response => localStorage.setItem('accessToken', response));
-    
-    return true;
   }
 }

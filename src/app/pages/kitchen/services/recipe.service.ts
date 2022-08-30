@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AlertMessage } from 'src/app/models/alert-message';
+import { AlertMessage } from 'src/app/models/alert-message.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { environment } from 'src/environments/environment';
 import { RecipeDetails } from '../models/recipe-details.model';

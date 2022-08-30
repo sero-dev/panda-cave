@@ -33,10 +33,6 @@ export class LogInComponent implements OnInit {
 
   onSubmit() {
     const { email, password } = this.form.value;
-    this.authService.login(email, password)
-      .subscribe(() => {
-        this.router.navigate(['/kitchen']);
-      });
+    this.authService.login(email, password).subscribe();
   }
-
 }

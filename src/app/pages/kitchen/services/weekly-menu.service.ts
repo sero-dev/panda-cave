@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { WeeklyMenuItem } from '../models/weekly-menu.model';
 import { environment } from 'src/environments/environment';
 import { AlertService } from 'src/app/services/alert.service';
-import { AlertMessage } from 'src/app/models/alert-message';
+import { AlertMessage } from 'src/app/models/alert-message.model';
 import { tap } from 'rxjs/operators';
 
 @Injectable({

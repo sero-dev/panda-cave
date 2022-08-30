@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { AlertMessage } from '../models/alert-message';
+import { AlertMessage } from '../models/alert-message.model';
 
 @Injectable({
   providedIn: 'root'
