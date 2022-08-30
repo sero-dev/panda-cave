@@ -7,7 +7,7 @@
 }">
   <img 
     *ngIf="alertMessage.icon" 
-    src="/assets/icons/{{alertMessage.icon}}.svg" 
+    src="./assets/icons/{{alertMessage.icon}}.svg" 
     role="status" 
     class="w-6 h-6 mr-4 text-gray-200 dark:text-gray-600"
     [ngClass]="{'animate-spin': alertMessage.icon === 'spinner'}">
