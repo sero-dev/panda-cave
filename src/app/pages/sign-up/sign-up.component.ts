@@ -14,11 +14,11 @@ import { passwordValidator } from 'src/app/validators/password.validator';
 export class SignUpComponent implements OnInit {
 
   form = this.fb.group({
-    "firstName": ["Juhi", [Validators.required, Validators.maxLength(30)]],
-    "lastName": ["Daryanani", [Validators.required, Validators.maxLength(30)]],
-    "email": ["juhidaryanani01@gmail.com", [Validators.required, Validators.email]],
-    "password": ["Abc123!@#", passwordValidator()],
-    "repeatPassword": ["Abc123!@#", Validators.required],
+    "firstName": ["", [Validators.required, Validators.maxLength(30)]],
+    "lastName": ["", [Validators.required, Validators.maxLength(30)]],
+    "email": ["", [Validators.required, Validators.email]],
+    "password": ["", passwordValidator()],
+    "repeatPassword": ["", Validators.required],
   }, { validators: [repeatPasswordValidator("password", "repeatPassword")] });
 
   get getControls() {
