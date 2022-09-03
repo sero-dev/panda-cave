@@ -10,7 +10,7 @@ import { KitchenComponent } from './kitchen.component';
 
 const routes: Routes = [
   {
-    path: 'kitchen', canActivate: [AuthGuard], component: KitchenComponent, children: [
+    path: 'kitchen', /*canActivate: [AuthGuard],*/ component: KitchenComponent, children: [
       { path: 'recipe', component: RecipesComponent },
       { path: 'recipe/:id/edit', component: RecipeDetailsComponent},
       { path: 'shopping-cart', component: ShoppingCartComponent },
